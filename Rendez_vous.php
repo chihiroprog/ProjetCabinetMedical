@@ -1,7 +1,7 @@
 <?php
 class Rendez_vous{
-    private date $date_rendez_vous_minute;
-    private date $durée;
+    private dateTime $date_rendez_vous_minute;
+    private dateTime $durée;
     private User $usager;
     private Medecin $medecin;
 }
