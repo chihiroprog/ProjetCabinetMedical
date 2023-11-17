@@ -1,6 +1,6 @@
 <?php
 class Usager extends User{
-    private dateTime $date_naissance;
+    private DateTime $date_naissance;
     private int $numero_securite_sociale;
 
     public function modifier_information_compte(
