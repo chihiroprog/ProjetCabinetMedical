@@ -1,0 +1,107 @@
+
+/*AJOUTER USAGER =============================================================*/
+
+.ajout_usagers{
+    background-color: white;
+    margin-top: 1em;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 30%; 
+    float: left;
+
+}
+.ajout_usagers label {
+    display: block;
+    margin-bottom: 5px; 
+}
+
+.ajout_usagers input,
+.ajout_usagers select {
+    margin-bottom: 10px; 
+    width: 90%;
+
+}
+
+.ajout_usagers input[type="submit"] {
+    width: auto; 
+    margin-bottom: 0;
+}
+
+
+/*MODIFIER USAGER =============================================================*/
+
+.modifications_usagers{
+    background-color: white;
+    float: right;
+    margin-top: 1em;
+    border: 1px solid black;
+    width: 30%; 
+
+}
+.modifications_usagers label {
+    display: block;
+    margin-bottom: 5px; 
+}
+
+.modifications_usagers input,
+.modifications_usagers select {
+    margin-bottom: 10px; 
+    width: 90%;
+}
+
+.modifications_usagers input[type="submit"] {
+    width: auto; 
+    margin-bottom: 0;
+}
+/*SUPPRIMER USAGER =============================================================*/
+.suppresion_usagers{
+    background-color: white;
+    float: right;
+    margin-top: 1em;
+    margin-right: 4em;
+    border: 1px solid black;
+    width: 30%; 
+
+}
+.suppresion_usagers label {
+    display: block;
+    margin-bottom: 5px; 
+}
+
+.suppresion_usagers input,
+.suppresion_usagers select {
+    margin-bottom: 10px; 
+    width: 90%;
+}
+
+.suppresion_usagers input[type="submit"] {
+    width: auto; 
+    margin-bottom: 0;
+}
+
+h2{
+    text-align: center;
+    margin-top: 1em;
+}
+
+
+body{
+    background-color: #f2f2f2;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+nav a {
+    color: white;
+    padding: 1em;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: gray;
+}
