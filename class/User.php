@@ -3,17 +3,17 @@ require 'db-config.php';
 
 class User
 {
-    private $conn;
+    private $connexion;
 
-    public function __construct($conn)
+    public function __construct($connexion)
     {
-        $this->conn = $conn;
+        $this->connexion = $connexion;
     }
 
     public function insertUser($civilite, $nom, $prenom, $est_medecin)
     {
         $sql = "INSERT INTO users (civilite, nom, prenom, est_medecin) VALUES (:civilite, :nom, :prenom, :est_medecin)";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->connexion->prepare($sql);
 
         $stmt->bindParam(':civilite', $civilite);
         $stmt->bindParam(':nom', $nom);
