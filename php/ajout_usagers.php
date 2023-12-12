@@ -35,5 +35,6 @@ try {
         'numero_securite_social' => $numero_securite_social,
 
     ));
+    header("Location: ../pages/Gestionnaire_users.html");
     exit();
 ?>
