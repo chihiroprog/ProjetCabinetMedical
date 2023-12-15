@@ -35,11 +35,8 @@
 
 .modifications_usagers{
     margin: 1em;
-    background-color: #ffffff;
-    margin-top: 1em;
-    border: none;
-    border-radius: 5%;
-    width: 30%; 
+    background-color: #70b5db41;
+    border-radius: 2%;
 
 }
 .modifications_usagers label {
