@@ -60,23 +60,37 @@
                 <label for="prenom">Prenom</label>
                 <input type="text" name="prenom" id="prenom" required>
 
+                <label for="numero_securite_social">Numéro sécurité social</label>
+                <input type="text" name="numero_securite_social" id="numero_securite_social" required>
+
                 <input type="submit" value="Modifier">
             </form>
 
         </div>
         <div class="suppresion_usagers">
-        <form action="../php/supprimer_usagers.php" method="post">
+        <form action="../php/rechercher_usagers.php" method="post">
                 <h2>Supprimer un usager</h2>
 
                 <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" required>
+                <input type="text" name="nom" id="nom" >
 
                 <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" required>
+                <input type="text" name="prenom" id="prenom" >
+
+                <!-- <label for="numero_securite_social">Numéro sécurité social</label>
+                <input type="text" name="numero_securite_social" id="numero_securite_social" required> -->
 
                 <input type="submit" value="Supprimer">
             </form>
         </div>
+    </div>
+    <div class="global_gestion_medecins">
+        <div class="ajout_medecin">
+            <form action="../php/ajout_medecin.php" method="post">
+                <h2>Ajouter un medecin</h2>
+
+                <label for="civilite">Nom</label>
+                <input type="text" name="civilite" id="civilite" required>
     </div>
 
 </body>
