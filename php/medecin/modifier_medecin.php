@@ -1,5 +1,5 @@
 <?php
-require '../php/db-config.php';
+require '../db-config.php';
 try {
     $options = [
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
@@ -15,8 +15,8 @@ try {
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
 
-$req = $linkpdo->query('SELECT civilite, nom, prenom, adresse, date_naissance, lieu_naissance, numero_securite_social
- FROM usager WHERE nom = "'.$nom.'" AND prenom = "'.$prenom.'"');
+$req = $linkpdo->query('SELECT civilite, nom, prenom
+ FROM medecin WHERE nom = "'.$nom.'" AND prenom = "'.$prenom.'"');
 
 while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     echo '<form action="modifier_usager.php" method="POST">';
@@ -24,10 +24,7 @@ while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
     echo 'Civilité: <input type="text" name="form_civilite" value="' . $row['civilite'] . '"><br>';
     echo 'Nom: <input type="text" name="form_nom" value="' . $row['nom'] . '"><br>';
     echo 'Prénom: <input type="text" name="form_prenom" value="' . $row['prenom'] . '"><br>';
-    echo 'Adresse: <input type="text" name="form_adresse" value="' . $row['adresse'] . '"><br>';
-    echo 'Date de naissance: <input type="text" name="form_date_naissance" value="' . $row['date_naissance'] . '"><br>';
-    echo 'Lieu de naissance: <input type="text" name="form_lieu_naissance" value="' . $row['lieu_naissance'] . '"><br>';
-    echo 'Numéro de sécurité sociale: <input type="text" name="form_numero_securite_social" value="' . $row['numero_securite_social'] . '"><br>';
+    
     
     echo '<input type="submit" value="Modifier">';
     echo '</form>';

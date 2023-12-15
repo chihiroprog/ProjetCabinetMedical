@@ -1,7 +1,11 @@
-
+.global_gestion_user{
+    display:flex;
+    justify-content: center;
+}
 /*AJOUTER USAGER =============================================================*/
 
 .ajout_usagers{
+    margin: 1em;
     background-color: white;
     margin-top: 1em;
     border: 1px solid black;
@@ -30,6 +34,7 @@
 /*MODIFIER USAGER =============================================================*/
 
 .modifications_usagers{
+    margin: 1em;
     background-color: white;
     margin-top: 1em;
     border: 1px solid black;
@@ -53,6 +58,7 @@
 }
 /*SUPPRIMER USAGER =============================================================*/
 .suppresion_usagers{
+    margin: 1em;
     background-color: white;
     margin-top: 1em;
     margin-right: 4em;
@@ -78,7 +84,39 @@
 /*AJOUTER MEDECIN =============================================================*/
 .global_gestion_medecins{
     display: flex;
-    float: none;
+}
+.ajout_medecin{
+    margin: 1em;
+    background-color: white;
+    margin-top: 1em;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 30%; 
+
+}
+.ajout_medecin label {
+    display: block;
+    margin-bottom: 5px; 
+}
+
+.ajout_medecin input,
+.ajout_medecin select {
+    margin-bottom: 10px; 
+    width: 90%;
+
+}
+
+.ajout_medecin input[type="submit"] {
+    width: auto; 
+    margin-bottom: 0;
+}
+
+
+
+
+/*CSS GLOBAL */
+h1{
+    text-align: center;
 }
 h2{
     text-align: center;
@@ -87,7 +125,7 @@ h2{
 
 
 body{
-    background-color: #a;
+    background-color: #f2f2f2;
 }
 
 nav {
