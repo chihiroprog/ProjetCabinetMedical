@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title></title>
 
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/gestionnaire.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,79 +20,118 @@
         </div>
     </nav>
 
-    <div class="global_gestion_user">
-        <div class="ajout_usagers">
-            <form action="../php/ajout_usagers.php" method="post">
-                <h2>Ajouter un usager</h2>
+    <div>
+        <h1>Usagers</h1>
+        <div class="global_gestion_user">
+            <div class="ajout_usagers">
+                <form action="../php/users/ajout_usagers.php" method="post">
+                    <h2>Ajouter un usager</h2>
 
-                <label for="civilite">Civilité</label>
-                <input type="text" name="civilite" id="civilite" required>
+                    <label for="civilite">Civilité</label>
+                    <input type="text" name="civilite" id="civilite" required>
+                    
 
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" required>
 
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" required>
+                    <label for="prenom">Prenom</label>
+                    <input type="text" name="prenom" id="prenom" required>
 
-                <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" required>
+                    <label for="adresse">Adresse complete</label>
+                    <input type="text" name="adresse" id="adresse" required>
 
-                <label for="adresse">Adresse complete</label>
-                <input type="text" name="adresse" id="adresse" required>
+                    <label for="date_naissance">Date de naissance</label>
+                    <input type="date" name="date_naissance" id="date_naissance" required>
 
-                <label for="date_naissance">Date de naissance</label>
-                <input type="date" name="date_naissance" id="date_naissance" required>
+                    <label for="lieu_naissance">Lieu de naissance</label>
+                    <input type="text" name="lieu_naissance" id="lieu_naissance" required>
 
-                <label for="lieu_naissance">Lieu de naissance</label>
-                <input type="text" name="lieu_naissance" id="lieu_naissance" required>
+                    <label for="numero_securite_social">Numéro sécurité social</label>
+                    <input type="text" name="numero_securite_social" id="numero_securite_social" required>
 
-                <label for="numero_securite_social">Numéro sécurité social</label>
-                <input type="text" name="numero_securite_social" id="numero_securite_social" required>
+                    <input type="submit" value="Ajouter">
+                </form>
+            </div>
+            <div class="modifications_usagers">
+            <form action="../php/users/modifier_usagers.php" method="post">
+                    <h2>Modifier un usager</h2>
 
-                <input type="submit" value="Ajouter">
-            </form>
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" required>
+
+                    <label for="prenom">Prenom</label>
+                    <input type="text" name="prenom" id="prenom" required>
+
+                    <label for="numero_securite_social">Numéro sécurité social</label>
+                    <input type="text" name="numero_securite_social" id="numero_securite_social" required>
+
+                    <input type="submit" value="Modifier">
+                </form>
+
+            </div>
+            <div class="suppresion_usagers">
+            <form action="../php/users/rechercher_usagers.php" method="post">
+                    <h2>Supprimer un usager</h2>
+
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" >
+
+                    <label for="prenom">Prenom</label>
+                    <input type="text" name="prenom" id="prenom" >
+
+                    <!-- <label for="numero_securite_social">Numéro sécurité social</label>
+                    <input type="text" name="numero_securite_social" id="numero_securite_social" required> -->
+
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
         </div>
-        <div class="modifications_usagers">
-        <form action="../php/modifier_usagers.php" method="post">
-                <h2>Modifier un usager</h2>
+    </div>  
 
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" required>
+    <!-- /* MEDECIN ++++++++++++++++++++++++++++++++++++++++++ */ -->
+    <div>
+        <h1>Médecin</h1>
+        <div class="global_gestion_medecins">
+            <div class="ajout_medecin">
+                <form action="../php/medecin/ajout_medecin.php" method="post">
+                    <h2>Ajouter un medecin</h2>
+                    <label for="civilite">Nom</label>
+                    <input for="nom" type="text" name="nom" id="nom" required>
+                    <label for="civilite">Prenom</label>
+                    <input for="prenom" type="text" name="prenom" id="prenom" required>
+                    <label for="civilite">Civilité</label>
+                    <input type="text" name="civilite" id="civilite" required>
+                    <input type="submit" value="Ajouter">
+                </form>
+            </div>
+            <div class="modifications_usagers">
+                <form action="../php/medecin/modifier_medecin.php" method="post">
+                    <h2>Modifier un usager</h2>
 
-                <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" required>
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" required>
 
-                <label for="numero_securite_social">Numéro sécurité social</label>
-                <input type="text" name="numero_securite_social" id="numero_securite_social" required>
+                    <label for="prenom">Prenom</label>
+                    <input type="text" name="prenom" id="prenom" required>
 
-                <input type="submit" value="Modifier">
-            </form>
+                    <input type="submit" value="Modifier">
+                </form>
+            </div>  
+            <div class="suppresion_usagers">
+                <form action="../php/medecin/rechercher_medecins.php" method="post">
+                    <h2>Supprimer un médecin</h2>
 
-        </div>
-        <div class="suppresion_usagers">
-        <form action="../php/rechercher_usagers.php" method="post">
-                <h2>Supprimer un usager</h2>
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="nom" >
 
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" id="nom" >
+                    <label for="prenom">Prenom</label>
+                    <input type="text" name="prenom" id="prenom" >
 
-                <label for="prenom">Prenom</label>
-                <input type="text" name="prenom" id="prenom" >
-
-                <!-- <label for="numero_securite_social">Numéro sécurité social</label>
-                <input type="text" name="numero_securite_social" id="numero_securite_social" required> -->
-
-                <input type="submit" value="Supprimer">
-            </form>
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
         </div>
     </div>
-    <div class="global_gestion_medecins">
-        <div class="ajout_medecin">
-            <form action="../php/ajout_medecin.php" method="post">
-                <h2>Ajouter un medecin</h2>
-
-                <label for="civilite">Nom</label>
-                <input type="text" name="civilite" id="civilite" required>
-    </div>
-
 </body>
 
 </html>
