@@ -8,13 +8,13 @@
     margin: 1em;
     background-color: white;
     margin-top: 1em;
-    border: 1px solid black;
+    border: none;
     border-radius: 4px;
     width: 30%; 
 
 }
 .ajout_usagers label {
-    display: block;
+    display: flex;
     margin-bottom: 5px; 
 }
 
@@ -35,14 +35,15 @@
 
 .modifications_usagers{
     margin: 1em;
-    background-color: white;
+    background-color: #ffffff;
     margin-top: 1em;
-    border: 1px solid black;
+    border: none;
+    border-radius: 5%;
     width: 30%; 
 
 }
 .modifications_usagers label {
-    display: block;
+    display: flex;
     margin-bottom: 5px; 
 }
 
@@ -62,12 +63,12 @@
     background-color: white;
     margin-top: 1em;
     margin-right: 4em;
-    border: 1px solid black;
+    border: none;
     width: 30%; 
 
 }
 .suppresion_usagers label {
-    display: block;
+    display: flex;
     margin-bottom: 5px; 
 }
 
@@ -95,7 +96,7 @@
 
 }
 .ajout_medecin label {
-    display: block;
+    display: flex;
     margin-bottom: 5px; 
 }
 
@@ -111,36 +112,9 @@
     margin-bottom: 0;
 }
 
+.category{
 
-
-
-/*CSS GLOBAL */
-h1{
     text-align: center;
-}
-h2{
-    text-align: center;
-    margin-top: 1em;
-}
-
-
-body{
-    background-color: #f2f2f2;
-}
-
-nav {
-    background-color: #333;
-    color: white;
-    padding: 0.5em;
-    margin-bottom: 1em;
-}
-
-nav a {
-    color: white;
-    padding: 1em;
-    text-decoration: none;
-}
-
-nav a:hover {
-    color: gray;
+    border-radius: 4px;
+    width: auto; 
 }
