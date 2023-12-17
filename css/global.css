@@ -1,0 +1,52 @@
+body{
+    background-color: #f7f7f7; 
+    font-family: arvo;  
+}
+  
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;     
+    .appName{
+        text-align: left;
+        padding-left: 1em;
+        font-weight: bold;
+    }
+    a {
+        color: black;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #3ca0e7;
+    }
+    .navBar{
+        ul li {
+            list-style: none;
+            margin: 0 auto;
+            border-left: 2px solid #3ca0e7;
+            display: inline-block;
+            padding: 0 30px;
+            position: relative;
+            text-decoration: none;
+            text-align: center;
+            font-family: arvo;
+        }
+  
+        li:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+
+form{
+    margin: 2em auto;
+    padding: 0em 0em 1em 1em;
+    display: block;
+    font-size: 16px;
+    font-family: arvo;
+    h2{
+        text-align: center;
+        font-family: arvo;
+    }
+}

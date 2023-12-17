@@ -6,22 +6,34 @@
     <title></title>
 
     <link href="" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/rdv.css" rel="stylesheet">
 </head>
 
+<header >
+    <div class="appName"> App </div>
+
+    <div class="navBar">
+        <ul>
+            <li><a href="index.html" class="navElement">Accueil</a></li>
+            <li><a href="Gestionnaire_users.html" class="navElement">Gestionnaire Utilisateurs</a></li>
+            <li><a href="saisi_Rendez_vous.html" class="navElement">Rendez-Vous</a></li>
+            <li><a href="Planning.html" class="navElement">Planning</a></li>
+            <li><a href="statistique.html" class="navElement">Statistique</a></li>
+        </ul>
+    </div>
+
+    <div class="Compte">
+        <a href="#">Votre compte</a>
+    </div>
+</header>
+
 <body>
-    <nav>
-        <div class="">
-            <a href="index.html" class="">Accueil</a>
-            <a href="Gestionnaire_users.html" class="">Gestionnaire Utilisateurs</a>
-            <a href="saisi_Rendez_vous.html" class="">Rendez-Vous</a>
-            <a href="Planning.html" class="">Planning</a>
-            <a href="statistique.html" class="">Statistique</a>
-        </div>
-    </nav>
+
     <div class="ajout_usagers">
         <h2>Ajouter un Rendez-Vous</h2>
         <form action="../php/ajout_rdv.php" method="post">
-            <label for="Medecin">Medecin</label>
+            <label for="Medecin">Médecin</label>
             <input type="text" id="Medecin" required>
 
             <label for="Patient">Patient</label>
@@ -33,7 +45,7 @@
             <label for="DateEtHeureDébutRendezVous">DateEtHeureDébutRendezVous</label>
             <input type="text" id="DateEtHeureDébutRendezVous" required>
             
-            <input type="submit" value="Envoyer">
+            <input type="submit" value="Ajouter">
         </form>
     </div>
 </body>

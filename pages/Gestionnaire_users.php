@@ -6,22 +6,36 @@
     <meta charset="utf-8">
     <title></title>
 
-    <link href="../css/gestionnaire.css" rel="stylesheet">
+    <link  rel="stylesheet" href="../css/gestionnaire.css">
+    <link  rel="stylesheet" href="../css/global.css">
 </head>
 
+<header >
+    <div class="appName"> App </div>
+
+    <div class="navBar">
+        <ul>
+            <li><a href="index.html" class="navElement">Accueil</a></li>
+            <li><a href="Gestionnaire_users.html" class="navElement">Gestionnaire Utilisateurs</a></li>
+            <li><a href="saisi_Rendez_vous.html" class="navElement">Rendez-Vous</a></li>
+            <li><a href="Planning.html" class="navElement">Planning</a></li>
+            <li><a href="statistique.html" class="navElement">Statistique</a></li>
+        </ul>
+    </div>
+
+    <div class="Compte">
+        <a href="#">Votre compte</a>
+    </div>
+</header>
+
 <body>
-    <nav>
-        <div class="">
-            <a href="index.html" class="">Accueil</a>
-            <a href="Gestionnaire_users.html" class="">Gestionnaire Utilisateurs</a>
-            <a href="saisi_Rendez_vous.html" class="">Rendez-Vous</a>
-            <a href="Planning.html" class="">Planning</a>
-            <a href="statistique.html" class="">Statistique</a>
-        </div>
-    </nav>
+
 
     <div>
-        <h1>Usagers</h1>
+        <div class="category">
+            <h1>Usagers</h1>
+        </div>
+
         <div class="global_gestion_user">
             <div class="ajout_usagers">
                 
@@ -115,7 +129,9 @@
 
     <!-- /* MEDECIN ++++++++++++++++++++++++++++++++++++++++++ */ -->
     <div>
-        <h1>Médecin</h1>
+        <div class="category">
+            <h1>Médecin</h1>
+        </div>
         <div class="global_gestion_medecins">
             <div class="ajout_medecin">
                 <form action="../php/medecin/ajout_medecin.php" method="post">
