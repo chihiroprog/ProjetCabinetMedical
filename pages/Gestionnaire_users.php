@@ -24,7 +24,19 @@
         <h1>Usagers</h1>
         <div class="global_gestion_user">
             <div class="ajout_usagers">
-                <form action="../php/users/ajout_usagers.php" method="post">
+                
+                <?php
+                    require_once '../php/users/AjoutUsagersCommand.php';
+                    if (isset($_POST['civilite']) && isset($_POST['nom'])) {
+                        AjoutUsager();
+                    }
+
+                    function AjoutUsager(){
+                        $comand = new AjoutUsagersCommand($_POST['civilite'], $_POST['nom'], $_POST['prenom'], $_POST['adresse'],  $_POST['date_naissance'],  $_POST['lieu_naissance'], $_POST['numero_securite_social']);
+                        $comand->execute();
+                    }
+                ?>         
+                <form action="" method="post">
                     <h2>Ajouter un usager</h2>
 
                     <label for="civilite">Civilité</label>
@@ -52,8 +64,20 @@
                     <input type="submit" value="Ajouter">
                 </form>
             </div>
+
+            <?php
+                require_once '../php/users/ModifierUsagersCommand.php';
+                if (isset($_POST['nom']) && isset($_POST['prenom'])) {
+                    ModifierUsager();
+                }
+                function ModifierUsager(){
+                    $command = new ModifierUsagersCommand($_POST['nom'], $_POST['prenom'], $_POST['numero_securite_social']);
+                    $command->execute();
+
+                }
+            ?>
             <div class="modifications_usagers">
-            <form action="../php/users/modifier_usagers.php" method="post">
+            <form action="" method="post">
                     <h2>Modifier un usager</h2>
 
                     <label for="nom">Nom</label>
@@ -63,12 +87,13 @@
                     <input type="text" name="prenom" id="prenom" required>
 
                     <label for="numero_securite_social">Numéro sécurité social</label>
-                    <input type="text" name="numero_securite_social" id="numero_securite_social" required>
+                    <input type="text" name="numero_securite_social" id="numero_securite_social">
 
                     <input type="submit" value="Modifier">
                 </form>
-
             </div>
+
+
             <div class="suppresion_usagers">
             <form action="../php/users/rechercher_usagers.php" method="post">
                     <h2>Supprimer un usager</h2>
