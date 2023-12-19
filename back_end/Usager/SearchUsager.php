@@ -2,16 +2,12 @@
 
     require_once '../Objects/dbConfig.php';
     require_once '../Objects/Usager.php';
-
-    checkInputToModidyUser($_POST);
+    $context = 'Modify';
+    checkInputToSearchUser($_POST);
     $commandModifyUser = setCommandModifyUser($_POST);
-    $commandModifyUser->ModifyUser();
-    //header('Location: ../../front_end/Gestionnaire_users.html');
+    $commandModifyUser->SearchUser($_POST['context']);
 
-
-
-
-    function checkInputToModidyUser($POST){
+    function checkInputToSearchUser($POST){
         if(!isset($POST['nom'])){
             exceptions_error_handler('nom pas fait');
         }
@@ -33,7 +29,7 @@
         $commandModifyUserToReturn->setNom($POST['nom']);
         $commandModifyUserToReturn->setPrenom($POST['prenom']);
         $commandModifyUserToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
-
         return $commandModifyUserToReturn;
     }
+
 ?>  

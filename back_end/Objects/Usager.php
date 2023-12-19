@@ -3,6 +3,7 @@ require_once 'dbConfig.php';
 class Usager
 {
     private DbConfig $dbconfig;
+    private $Id_Usager;
     private $civilite;
     private $nom;
     private $prenom;
@@ -14,6 +15,7 @@ class Usager
     public function __construct(){
         $this->dbconfig = DbConfig::getDbConfig();
     }
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++AJOUT USER+++++++++++++++++++++++++++++++++++++++++++++++
     public function addUser()
     {
         try {
@@ -33,15 +35,13 @@ class Usager
 
             ));
 
-        } catch (Exception $pe) {
-            echo 'ERREUR : ' . $pe->getMessage();
-        }
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
-
-    public function ModifyUser()
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++RECHERCHE USER+++++++++++++++++++++++++++++++++++++++++++++++
+    public function SearchUser($context)
     {
         try {
-            $req = $this->dbconfig->getPDO()->prepare('SELECT civilite, nom, prenom, adresse, date_naissance, lieu_naissance, numero_securite_social
+            $req = $this->dbconfig->getPDO()->prepare('SELECT Id_Usager,civilite, nom, prenom, adresse, date_naissance, lieu_naissance, numero_securite_social
             FROM usager WHERE nom = :nom AND prenom = :prenom');
 
             $req->execute(array(
@@ -49,19 +49,31 @@ class Usager
                 ':prenom' => $this->prenom,
             ));
 
-            $this->printModifyUser($req);
-
+            if($context === 'Modify'){
+                $this->printModifyUser($req);
+            }elseif($context === 'Delete'){
+                $this->printDeleteUser($req);
+            }
         } 
         catch (Exception $pe) { echo 'ERREUR : ' . $pe->getMessage(); }
     }
-
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++AFFICHAGE POUR MODIF USER+++++++++++++++++++++++++++++++++++++++++++++++
 
     function printModifyUser($req){
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            echo '<form action="" method="POST">';
-        
-            echo 'Civilité: <input type="text" name="form_civilite" value="' . $row['civilite'] . '"><br>';
-            echo 'Nom: <input type="text" name="form_nom" value="' . $row['nom'] . '"><br>';
+            echo '<form action="../Usager/ModifyUser.php" method="POST">';
+            
+            echo '<input type="hidden" name="user_id" value="' . $row['Id_Usager'] . '">';
+    
+            echo '<label for="civilite_homme"><input type="radio" name="form_civilite" value="homme" required';
+            echo ($row['civilite'] == 'homme') ? ' checked' : '';
+            echo '>homme</label>';
+            
+            echo '<label for="civilite_femme"><input type="radio" name="form_civilite" value="femme" required';
+            echo ($row['civilite'] == 'femme') ? ' checked' : '';
+            echo '>femme</label><br>';
+    
+            echo 'Nom: <input type="text"  name="form_nom" value="' . $row['nom'] . '" ><br>';
             echo 'Prénom: <input type="text" name="form_prenom" value="' . $row['prenom'] . '"><br>';
             echo 'Adresse: <input type="text" name="form_adresse" value="' . $row['adresse'] . '"><br>';
             echo 'Date de naissance: <input type="text" name="form_date_naissance" value="' . $row['date_naissance'] . '"><br>';
@@ -72,7 +84,81 @@ class Usager
             echo '</form>';
         }
     }
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++AFFICHAGE POUR DELETE USER+++++++++++++++++++++++++++++++++++++++++++++++
+    // function printDeleteUser($req){
+    //     while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
+    //         echo '<form action="../Usager/DeleteUser.php" method="POST">';
+            
+    //         echo '<input type="hidden" name="user_id" value="' . $row['Id_Usager'] . '">';
+    
+    //         echo '<label for="civilite_homme"><input type="radio" name="form_civilite" value="homme" required';
+    //         echo ($row['civilite'] == 'homme') ? ' checked' : '';
+    //         echo '>homme</label>';
+            
+    //         echo '<label for="civilite_femme"><input type="radio" name="form_civilite" value="femme" required';
+    //         echo ($row['civilite'] == 'femme') ? ' checked' : '';
+    //         echo '>femme</label><br>';
+    
+    //         echo 'Nom: <input type="text" disabled name="form_nom" value="' . $row['nom'] . '" ><br>';
+    //         echo 'Prénom: <input type="text" name="form_prenom" value="' . $row['prenom'] . '"><br>';
+    //         echo 'Adresse: <input type="text" name="form_adresse" value="' . $row['adresse'] . '"><br>';
+    //         echo 'Date de naissance: <input type="text" name="form_date_naissance" value="' . $row['date_naissance'] . '"><br>';
+    //         echo 'Lieu de naissance: <input type="text" name="form_lieu_naissance" value="' . $row['lieu_naissance'] . '"><br>';
+    //         echo 'Numéro de sécurité sociale: <input type="text" name="form_numero_securite_social" value="' . $row['numero_securite_social'] . '"><br>';
+            
+    //         echo '<input type="submit" value="Modifier">';
+    //         echo '</form>';
+    //     }
+    // }
 
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++MODIFICATION USER+++++++++++++++++++++++++++++++++++++++++++++++
+    public function ModifyUser(){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare(
+            'UPDATE usager SET 
+                civilite = :form_civilite,
+                nom = :form_nom,
+                prenom = :form_prenom,
+                adresse = :form_adresse,
+                date_naissance = :form_date_naissance,
+                lieu_naissance = :form_lieu_naissance,
+                numero_securite_social = :form_numero_securite_social
+                WHERE Id_Usager = :user_id');
+
+            $req->execute(array(
+                'user_id' => $this->Id_Usager,
+                'form_civilite' => $this->civilite,
+                'form_nom' => $this->nom,
+                'form_prenom' => $this->prenom,
+                'form_adresse' => $this->adresse,
+                'form_date_naissance' => $this->date_naissance,
+                'form_lieu_naissance' => $this->lieu_naissance,
+                'form_numero_securite_social' => $this->numero_securite_social,
+
+            ));
+
+
+            
+        }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
+    } 
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++DELETE USER+++++++++++++++++++++++++++++++++++++++++++++++
+
+    // public function DeleteUser(){
+    //     try{
+    //         $req = $this->dbconfig->getPDO()->prepare(
+    //             'DELETE FROM usager
+    //             WHERE Id_Usager = :user_id');
+    
+    //         $req->execute(array(
+    //             'user_id' => $this->Id_Usager,
+    //         ));
+            
+    //     }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
+    // }
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++SETTER+++++++++++++++++++++++++++++++++++++++++++++++
+    public function setId($Id_Usager){
+        $this->Id_Usager = $Id_Usager;
+    }
     public function setCivilite($civ){
         $this->civilite = $civ;
     }

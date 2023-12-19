@@ -41,9 +41,9 @@
                   
                 <form action="../back_end/Usager/AddUsager.php" method="post">
                     <h2>Ajouter un usager</h2>
-
-                    <label for="civilite">Civilité</label>
-                    <input type="text" name="civilite" id="civilite" value="test" required>
+                    <legend>Sexe</legend>
+                    <label for="civilite"><input type="radio" name="civilite"  value="homme" required>homme</label>
+                    <label for="civilite"><input type="radio" name="civilite"  value="femme" required>femme</label>
                     
 
                     <label for="nom">Nom</label>
@@ -70,14 +70,15 @@
 
 
             <div class="modifications_usagers">
-            <form action="../back_end/Usager/ModifyUsager.php" method="post">
+            <form action="../back_end/Usager/SearchUsager.php" method="post">
+                    <input type="hidden" name="context" value="Modify">
                     <h2>Modifier un usager</h2>
 
                     <label for="nom">Nom</label>
-                    <input type="text" name="nom" id="nom" required>
+                    <input type="text" name="nom" id="nom" value="test"required>
 
                     <label for="prenom">Prenom</label>
-                    <input type="text" name="prenom" id="prenom" required>
+                    <input type="text" name="prenom" id="prenom"value="test" required>
 
                     <label for="numero_securite_social">Numéro sécurité social</label>
                     <input type="text" name="numero_securite_social" id="numero_securite_social">
@@ -88,7 +89,8 @@
 
 
             <div class="suppresion_usagers">
-            <form action="../php/users/rechercher_usagers.php" method="post">
+            <form action="../back_end/Usager/DeleteUser.php" method="post">
+                <input type="hidden" name="context" value="Delete">
                     <h2>Supprimer un usager</h2>
 
                     <label for="nom">Nom</label>
@@ -97,8 +99,8 @@
                     <label for="prenom">Prenom</label>
                     <input type="text" name="prenom" id="prenom" >
 
-                    <!-- <label for="numero_securite_social">Numéro sécurité social</label>
-                    <input type="text" name="numero_securite_social" id="numero_securite_social" required> -->
+                    <label for="numero_securite_social">Numéro sécurité social</label>
+                    <input type="text" name="numero_securite_social" id="numero_securite_social" >
 
                     <input type="submit" value="Supprimer">
                 </form>
