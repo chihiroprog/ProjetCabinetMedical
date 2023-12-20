@@ -2,10 +2,9 @@
 
     require_once '../Objects/dbConfig.php';
     require_once '../Objects/Usager.php';
-    $context = 'Modify';
     checkInputToSearchUser($_POST);
-    $commandModifyUser = setCommandModifyUser($_POST);
-    $commandModifyUser->SearchUser($_POST['context']);
+    $commandSearchUser = setCommandSearchUser($_POST);
+    $commandSearchUser->SearchUser($_POST['context']);
 
     function checkInputToSearchUser($POST){
         if(!isset($POST['nom'])){
@@ -23,13 +22,13 @@
         throw new ErrorException($message);
     }
 
-    function setCommandModifyUser($POST){
-        $commandModifyUserToReturn = new Usager();
+    function setCommandSearchUser($POST){
+        $commandSearchUserToReturn = new Usager();
         
-        $commandModifyUserToReturn->setNom($POST['nom']);
-        $commandModifyUserToReturn->setPrenom($POST['prenom']);
-        $commandModifyUserToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
-        return $commandModifyUserToReturn;
+        $commandSearchUserToReturn->setNom($POST['nom']);
+        $commandSearchUserToReturn->setPrenom($POST['prenom']);
+        $commandSearchUserToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
+        return $commandSearchUserToReturn;
     }
 
 ?>  
