@@ -6,7 +6,7 @@ require_once '../Objects/Medecin.php';
     checkInputToAddMedecin($_POST);
     $commandToAddMedecin = setCommandToAddMedecin($_POST);
     $commandToAddMedecin->AddMedecin();
-    header('Location: ../../front_end/Gestionnaire_users.html');
+    header('Location: ../../front_end/Médecins.html');
 
 function checkInputToAddMedecin($POST){
     if(!isset($POST['civilite'])){

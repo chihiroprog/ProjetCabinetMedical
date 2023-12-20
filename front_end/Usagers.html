@@ -16,10 +16,10 @@
     <div class="navBar">
         <ul>
             <li><a href="index.html" class="navElement">Accueil</a></li>
-            <li><a href="Gestionnaire_users.html" class="navElement">Gestionnaire Utilisateurs</a></li>
-            <li><a href="saisi_Rendez_vous.html" class="navElement">Rendez-Vous</a></li>
-            <li><a href="Planning.html" class="navElement">Planning</a></li>
-            <li><a href="statistique.html" class="navElement">Statistique</a></li>
+            <li><a href="Usagers.html" class="navElement">Usagers</a></li>
+            <li><a href="Consultations.html" class="navElement">Consultations</a></li>
+            <li><a href="Médecins.html" class="navElement">Médecins</a></li>
+            <li><a href="Statistiques.html" class="navElement">Statistiques</a></li>
         </ul>
     </div>
 
@@ -109,57 +109,7 @@
     </div>  
 
     <!-- /* MEDECIN ++++++++++++++++++++++++++++++++++++++++++ */ -->
-    <div>
-        <div class="category">
-            <h1>Médecin</h1>
-        </div>
-        <div class="global_gestion_medecins">
-            <div class="ajout_medecin">
-                <form action="../back_end/Medecin/AddMedecin.php" method="post">
-                    <h2>Ajouter un medecin</h2>
-                    <legend>Sexe</legend>
-                    <label for="civilite"><input type="radio" name="civilite"  value="homme" required>homme</label>
-                    <label for="civilite"><input type="radio" name="civilite"  value="femme" required>femme</label>
-                    
-                    <label for ="Nom">Nom</label>
-                    <input for="nom" type="text" name="nom" id="nom" required>
-                    
-                    <label for="prenom">Prenom</label>
-                    <input for="prenom" type="text" name="prenom" id="prenom" required>
 
-                    <input type="submit" value="Ajouter">
-                </form>
-            </div>
-            <div class="modifications_usagers">
-                <form action="../back_end/Medecin/SearchMedecin.php" method="post">
-                    <input type="hidden" name="context" value="Modify">
-                    <h2>Modifier un usager</h2>
-
-                    <label for="nom">Nom</label>
-                    <input type="text" name="nom" id="nom" required>
-
-                    <label for="prenom">Prenom</label>
-                    <input type="text" name="prenom" id="prenom" required>
-
-                    <input type="submit" value="Modifier">
-                </form>
-            </div>  
-            <div class="suppresion_usagers">
-                <form action="../back_end/Medecin/SearchMedecin.php" method="post">
-                    <input type="hidden" name="context" value="Delete">
-                    <h2>Supprimer un médecin</h2>
-
-                    <label for="nom">Nom</label>
-                    <input type="text" name="nom" id="nom" >
-
-                    <label for="prenom">Prenom</label>
-                    <input type="text" name="prenom" id="prenom" >
-
-                    <input type="submit" value="Supprimer">
-                </form>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

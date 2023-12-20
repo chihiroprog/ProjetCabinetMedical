@@ -5,7 +5,7 @@
     CheckInputModifyMedecin($_POST);
     $commandToModifyMedecin = setModifyMedecinCommand($_POST);
     $commandToModifyMedecin->ModifyMedecin();
-    header('Location: ../../front_end/Gestionnaire_users.html');
+    header('Location: ../../front_end/Médecins.html');
     
     function CheckInputModifyMedecin($POST){
 
