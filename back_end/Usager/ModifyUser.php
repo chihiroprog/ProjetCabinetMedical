@@ -8,7 +8,7 @@
     checkInputToModify($_POST);
     $commandToModify = setComandModifyUser($_POST);
     $commandToModify->ModifyUser();
-    header('Location: ../../front_end/Gestionnaire_users.html');
+    header('Location: ../../front_end/Usagers.html');
 
     function checkInputToModify($POST){
         if(!isset($POST['form_civilite'])){

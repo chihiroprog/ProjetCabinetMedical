@@ -7,7 +7,7 @@
     checkInputToDelete($_POST);
     $commandToDelete = setCommandDeleteUser($_POST);
     $commandToDelete->DeleteUser();
-    header('Location: ../../front_end/Gestionnaire_users.html');
+    header('Location: ../../front_end/Usagers.html');
 
     function checkInputToDelete($POST){
         if (!isset($POST['user_id'])) {
