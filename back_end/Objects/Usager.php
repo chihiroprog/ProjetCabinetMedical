@@ -11,16 +11,38 @@ class Usager
     private $date_naissance;
     private $lieu_naissance;
     private $numero_securite_social;
+    private $medecin_referent;
 
     public function __construct(){
         $this->dbconfig = DbConfig::getDbConfig();
     }
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++AFFICHAGE ALL MEDECIN+++++++++++++++++++++++++++++++++++++++++++++++
+
+    public function PrintAllMedecin(){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM medecin');
+            $req->execute();
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+    
+            $output = '';
+            foreach ($result as $medecin) {
+                $output .= '<option value="' . $medecin['Id_Medecin'] . '">' . $medecin['prenom'] . ' ' . $medecin['nom'] . '</option>';
+            }
+    
+            return $output;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+            return '';
+        }
+    }
+    
+    
     //+++++++++++++++++++++++++++++++++++++++++++++++++++AJOUT USER+++++++++++++++++++++++++++++++++++++++++++++++
     public function addUser()
     {
         try {
-            $req = $this->dbconfig->getPDO()->prepare('INSERT INTO usager (civilite ,nom, prenom, adresse, date_naissance,lieu_naissance, numero_securite_social ) 
-            VALUES (:civilite,:nom, :prenom, :adresse, :date_naissance,:lieu_naissance, :numero_securite_social )');
+            $req = $this->dbconfig->getPDO()->prepare('INSERT INTO usager (civilite ,nom, prenom, adresse, date_naissance,lieu_naissance, numero_securite_social,medecin_referent) 
+            VALUES (:civilite,:nom, :prenom, :adresse, :date_naissance,:lieu_naissance, :numero_securite_social, :medecin_referent )');
 
             $req->execute(array(
                 'nom' => $this->nom,
@@ -30,6 +52,7 @@ class Usager
                 'date_naissance' => $this->date_naissance,
                 'lieu_naissance' => $this->lieu_naissance,
                 'numero_securite_social' => $this->numero_securite_social,
+                'medecin_referent' => $this->medecin_referent,
 
             ));
 
@@ -184,7 +207,9 @@ class Usager
     public function setNumeroSecuriteSocial($numero_securite_social){
         $this->numero_securite_social = $numero_securite_social;
     }
-
+    public function setMedecinReferent($medecin_referent){
+        $this->medecin_referent = $medecin_referent;
+    }
     
 
 }

@@ -6,38 +6,41 @@
     checkInputToAddUser($_POST);
     $commandAddUser = setCommandAddUser($_POST);
     $commandAddUser->addUser();
-    header('Location: ../../front_end/Usagers.html');
+    //header('Location: ../../front_end/Usagers.html');
 
 
 
 
     function checkInputToAddUser($POST){
         if(!isset($POST['civilite'])){
-            exceptions_error_handler('civilite pas fait');
+            exceptions_error_handler('civilite null');
         }
 
         if(!isset($POST['nom'])){
-            exceptions_error_handler('nom pas fait');
+            exceptions_error_handler('nom null');
         }
 
         if(!isset($POST['prenom'])){
-            exceptions_error_handler('prenom pas fait');
+            exceptions_error_handler('prenom null');
         }
         
         if(!isset($POST['adresse'])){
-            exceptions_error_handler('adresse pas fait');
+            exceptions_error_handler('adresse null');
         }
 
         if(!isset($POST['date_naissance'])){
-            exceptions_error_handler('date_naissance pas fait');
+            exceptions_error_handler('date_naissance null');
         }
 
         if(!isset($POST['lieu_naissance'])){
-            exceptions_error_handler('lieu_naissance pas fait');
+            exceptions_error_handler('lieu_naissance null');
         }
 
         if(!isset($POST['numero_securite_social'])){
-            exceptions_error_handler('numero_securite_social pas fait');
+            exceptions_error_handler('numero_securite_social null');
+        }
+        if(!isset($POST['medecin_referent'])){
+            exceptions_error_handler('medecin référent null');
         }
     }
 
@@ -51,6 +54,7 @@
         $commandAddUserToReturn->setDateNaissance($POST['date_naissance']);
         $commandAddUserToReturn->setLieuNaissance($POST['lieu_naissance']);
         $commandAddUserToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
+        $commandAddUserToReturn->setMedecinReferent($POST['medecin_referent']);
         return $commandAddUserToReturn;
     }
 

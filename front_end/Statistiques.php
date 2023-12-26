@@ -16,7 +16,7 @@
         <div class="navBar">
             <ul>
                 <li><a href="index.html" class="navElement">Accueil</a></li>
-                <li><a href="Usagers.html" class="navElement">Usagers</a></li>
+                <li><a href="Usagers.php" class="navElement">Usagers</a></li>
                 <li><a href="Consultations.html" class="navElement">Consultations</a></li>
                 <li><a href="Médecins.html" class="navElement">Médecins</a></li>
                 <li><a href="Statistiques.html" class="navElement">Statistiques</a></li>
