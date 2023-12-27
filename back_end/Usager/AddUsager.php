@@ -6,7 +6,7 @@
     checkInputToAddUser($_POST);
     $commandAddUser = setCommandAddUser($_POST);
     $commandAddUser->addUser();
-    //header('Location: ../../front_end/Usagers.html');
+    header('Location: ../../front_end/Usagers.php');
 
 
 

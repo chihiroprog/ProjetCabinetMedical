@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <title></title>
 
-    <link  rel="stylesheet" href="../css/global.css">
     <link  rel="stylesheet" href="..css/planning.css">
 </head>
 
@@ -22,12 +21,12 @@
         </ul>
     </div>
     <h1>Creation de rendez-vous</h1>
-    <form action="../back_end/render_vous/ajout_rdv.php">
-        <label for="prenom">Nom Patient</label>
-        <input type="text" name="prenom" id="prenom" required>
-        <label for="prenom">Prenom Patient</label>
-        <input type="text" name="prenom" id="prenom" required>
-        <input type="submit" value="Ajouter">
+    <form action="../back_end/rendez_vous/SearchUserRdv.php" method="post">
+
+        <label for="numero_securite_social">numero de secu</label>
+        <input type="text" name="numero_securite_social" value="311212121"required>
+
+        <input type="submit" value="Ajouter un rendez-vous">
     </form>
 </header>
 

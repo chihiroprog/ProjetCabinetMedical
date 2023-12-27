@@ -2,7 +2,7 @@ body{
     background-color: #f7f7f7; 
     font-family: arvo;  
 }
-  
+
 header{
     display: flex;
     justify-content: space-between;

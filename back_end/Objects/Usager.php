@@ -210,6 +210,41 @@ class Usager
     public function setMedecinReferent($medecin_referent){
         $this->medecin_referent = $medecin_referent;
     }
+    public function getIdUsager(){
+        return $this->Id_Usager;
+    }
+    
+    public function getCivilite(){
+        return $this->civilite;
+    }
+    
+    public function getNom(){
+        return $this->nom;
+    }
+    
+    public function getPrenom(){
+        return $this->prenom;
+    }
+    
+    public function getAdresse(){
+        return $this->adresse;
+    }
+    
+    public function getDateNaissance(){
+        return $this->date_naissance;
+    }
+    
+    public function getLieuNaissance(){
+        return $this->lieu_naissance;
+    }
+    
+    public function getNumeroSecuriteSocial(){
+        return $this->numero_securite_social;
+    }
+    
+    public function getMedecinReferent(){
+        return $this->medecin_referent;
+    }
     
 
 }
