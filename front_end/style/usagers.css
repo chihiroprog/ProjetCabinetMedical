@@ -1,0 +1,183 @@
+/* AJOUTER USAGERS */
+h1 {
+    color: #3498db;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+
+.global_gestion_user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.ajout_usagers {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+.ajout_usagers h2 {
+    color: #3498db;
+    text-align: center;
+}
+
+.ajout_usagers form {
+    display: flex;
+    flex-direction: column;
+}
+
+.ajout_usagers label {
+    margin: 10px 0;
+}
+
+.ajout_usagers input[type="text"],
+.ajout_usagers input[type="date"],
+.ajout_usagers input[type="radio"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.ajout_usagers select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.ajout_usagers input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.ajout_usagers input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/*MODIFIER*/
+
+/* Ajoutez ces styles dans votre fichier de style (par exemple, style.css) */
+
+.modifications_usagers {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+.modifications_usagers h2 {
+    color: #3498db;
+    text-align: center;
+}
+
+.modifications_usagers form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modifications_usagers label {
+    margin: 10px 0;
+}
+
+.modifications_usagers input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modifications_usagers input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.modifications_usagers input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* SUPPRIMER */
+
+.suppresion_usagers {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 2px solid #e74c3c;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+.suppresion_usagers h2 {
+    color: #e74c3c;
+    text-align: center;
+}
+
+.suppresion_usagers form {
+    display: flex;
+    flex-direction: column;
+}
+
+.suppresion_usagers label {
+    margin: 10px 0;
+}
+
+.suppresion_usagers input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.suppresion_usagers input[type="submit"] {
+    background-color: #e74c3c;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.suppresion_usagers input[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+.ajout_usagers,
+.modifications_usagers,
+.suppresion_usagers {
+    margin: 20px;
+}
+.bas{
+        width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
