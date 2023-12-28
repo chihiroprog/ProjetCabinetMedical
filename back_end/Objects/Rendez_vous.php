@@ -118,6 +118,14 @@
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
 
+    public function getAllRdv(){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare('SELECT nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager FROM rdv');
+            $req->execute();
+            return $req;
+        }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+
+    }
 
     
     public function setNumeroSecuriteSocial($numero_securite_social){

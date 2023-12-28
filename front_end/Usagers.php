@@ -6,26 +6,22 @@
     <meta charset="utf-8">
     <title></title>
 
-    <link  rel="stylesheet" href="style/gestionnaire.css">
+    <link  rel="stylesheet" href="style/usagers.css">
     <link  rel="stylesheet" href="style/global.css">
 </head>
 
 <header >
-    <div class="appName"> App </div>
 
     <div class="navBar">
         <ul>
             <li><a href="index.html" class="navElement">Accueil</a></li>
             <li><a href="Usagers.php" class="navElement">Usagers</a></li>
-            <li><a href="Consultations.html" class="navElement">Consultations</a></li>
+            <li><a href="Consultations.php" class="navElement">Consultations</a></li>
             <li><a href="Médecins.html" class="navElement">Médecins</a></li>
             <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
         </ul>
     </div>
 
-    <div class="Compte">
-        <a href="#">Votre compte</a>
-    </div>
 </header>
 
 <body>
@@ -63,23 +59,19 @@
 
                     <label for="numero_securite_social">Numéro sécurité social</label>
                     <input type="text" name="numero_securite_social" id="numero_securite_social" required>
-                    <?php
-                        require_once("../back_end/Objects/DbConfig.php");
-                        require_once("../back_end/Objects/Usager.php");
+                        <?php
+                            require_once("../back_end/Objects/DbConfig.php");
+                            require_once("../back_end/Objects/Usager.php");
 
-                        $usager = new Usager();
-                        $printAllMedecin = $usager->PrintAllMedecin();
+                            $usager = new Usager();
+                            $printAllMedecin = $usager->PrintAllMedecin();
 
-                        echo '<label>Choix du Medecin Référent</label>
-                            <select name="medecin_referent">
-                                ' . $printAllMedecin . '
-                            </select>';
-                    ?>
-
-
-
+                            echo '<label>Choix du Medecin Référent</label>
+                                <select name="medecin_referent">
+                                    ' . $printAllMedecin . '
+                                </select>';
+                        ?>
                     <input type="submit" value="Ajouter">
-
                 </form>
             </div>
 
@@ -96,7 +88,7 @@
                     <input type="text" name="prenom" id="prenom" required>
 
                     <label for="numero_securite_social">Numéro sécurité social</label>
-                    <input type="text" name="numero_securite_social" id="numero_securite_social">
+                    <input type="text" class="bas" name="numero_securite_social" id="numero_securite_social">
 
                     <input type="submit" value="Modifier">
                 </form>
@@ -115,15 +107,13 @@
                     <input type="text" name="prenom" id="prenom" >
 
                     <label for="numero_securite_social">Numéro sécurité social</label>
-                    <input type="text" name="numero_securite_social" id="numero_securite_social" >
+                    <input type="text" class="bas" name="numero_securite_social" id="numero_securite_social" >
 
                     <input type="submit" value="Supprimer">
                 </form>
             </div>
         </div>
     </div>  
-
-    <!-- /* MEDECIN ++++++++++++++++++++++++++++++++++++++++++ */ -->
 
 </body>
 

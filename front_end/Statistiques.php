@@ -5,25 +5,24 @@
     <meta charset="utf-8">
     <title></title>
 
-    <!-- <link  rel="stylesheet" href="style/global.css"> -->
+    <link  rel="stylesheet" href="style/global.css">
     <link  rel="stylesheet" href="style/stats.css">
 </head>
 
 <body>
     <header >
-        <div class="appName"> App </div>
 
         <div class="navBar">
             <ul>
                 <li><a href="index.html" class="navElement">Accueil</a></li>
                 <li><a href="Usagers.php" class="navElement">Usagers</a></li>
-                <li><a href="Consultations.html" class="navElement">Consultations</a></li>
+                <li><a href="Consultations.php" class="navElement">Consultations</a></li>
                 <li><a href="Médecins.html" class="navElement">Médecins</a></li>
                 <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
             </ul>
         </div>
 
-
+        <h1>Statistique des âges des usagers</h1>
         <div class="tableau">
         <?php
             require_once("../back_end/Objects/DbConfig.php");
@@ -41,7 +40,6 @@
             $PrintAllNameMedecin = $statistique->PrintAllNameMedecin();
 
           echo '<table>
-                  <caption>Statistique des âges des usagers</caption>
                   <tbody>
                       <tr>
                           <th scope="col">Tranche d\'âge</th>
@@ -70,9 +68,10 @@
                       </tr>
                   </tbody>
               </table>';
-
+?>
+              <h1>Statistique Medecin</h1>
+        <?php
               echo '<table>
-              <caption>Statistique Medecin</caption>
               <tbody>
                   <tr>
                       <th scope="col">Nom & Prenom</th>
