@@ -184,13 +184,38 @@ class Usager
 
             $usager = $req->fetch();
             if($usager){
-                header('Location: ../../front_end/usager/usager.php');
+                header('Location: ../../front_end/usager/usager.php?nom=' . urlencode($usager['nom']) . '&prenom=' . urlencode($usager['prenom']));
             }else{
                 header('Location: ../../front_end/index.html');
-                echo 'usager non trouvé';
             }
 
         }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
+    public function getUsagerIDByNameAndFristName($nom,$prenom){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT Id_Usager, nom,prenom FROM usager WHERE nom = :nom AND prenom = :prenom');
+            $req->execute(array(
+                ':prenom' => $prenom,
+                ':nom' => $nom,
+            ));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $result;
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
+    public function getAllRdvUsagerByIdUsager($Id_Usager){
+        // Sélectionne toutes les lignes où Id_Medecin est égal à $Id_Medecin dans la table rendez-vous
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Usager = :IdUsager');
+            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->execute();
+
+            return $req;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++SETTER+++++++++++++++++++++++++++++++++++++++++++++++
