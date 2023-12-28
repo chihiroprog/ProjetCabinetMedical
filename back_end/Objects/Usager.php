@@ -173,6 +173,26 @@ class Usager
         }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
     } 
 
+    public function CheckUsagerExist(){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM usager WHERE nom = :nom AND prenom = :prenom' );
+
+            $req->execute(array(
+                'prenom' => $this->prenom,
+                'nom' => $this->nom,
+            ));
+
+            $usager = $req->fetch();
+            if($usager){
+                header('Location: ../../front_end/usager/usager.php');
+            }else{
+                header('Location: ../../front_end/index.html');
+                echo 'usager non trouvé';
+            }
+
+        }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
     //+++++++++++++++++++++++++++++++++++++++++++++++++++SETTER+++++++++++++++++++++++++++++++++++++++++++++++
     public function setId($Id_Usager){
         $this->Id_Usager = $Id_Usager;

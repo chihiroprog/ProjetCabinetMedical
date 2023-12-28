@@ -116,6 +116,58 @@ class Medecin{
 
         }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
     }
+
+    function CheckMedecinExist() {
+        try {
+            $req = $this->dbConfig->getPDO()->prepare('SELECT * FROM medecin WHERE nom = :nom AND prenom = :prenom');
+    
+            $req->execute(array(
+                'prenom' => $this->prenom,
+                'nom' => $this->nom,
+            ));
+    
+            $medecin = $req->fetch();
+            if ($medecin) {
+                // Utilisez urlencode pour encoder les valeurs dans l'URL
+                header('Location: ../../front_end/medecin/medecin.php?nom=' . urlencode($medecin['nom']) . '&prenom=' . urlencode($medecin['prenom']));
+                exit;
+            } else {
+                header('Location: ../../front_end/index.html');
+                exit;
+            }
+    
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
+    public function getMedecinIDByNameAndFristName($nom,$prenom){
+        try {
+            $req = $this->dbConfig->getPDO()->prepare('SELECT Id_Medecin, nom,prenom FROM medecin WHERE nom = :nom AND prenom = :prenom');
+            $req->execute(array(
+                ':prenom' => $prenom,
+                ':nom' => $nom,
+            ));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $result;
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
+    public function getAllRdvMedecinByIdMedecin($Id_Medecin){
+        // Sélectionne toutes les lignes où Id_Medecin est égal à $Id_Medecin dans la table rendez-vous
+        try {
+            $req = $this->dbConfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Medecin = :IdMedecin');
+            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->execute();
+
+            return $req;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
+
+    
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++SETTER+++++++++++++++++++++++++++++++++++++++++++++++
     public function setNom($nom){
         $this->nom = $nom;
