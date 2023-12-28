@@ -19,24 +19,26 @@
                 <li><a href="Usagers.php" class="navElement">Usagers</a></li>
                 <li><a href="Consultations.html" class="navElement">Consultations</a></li>
                 <li><a href="Médecins.html" class="navElement">Médecins</a></li>
-                <li><a href="Statistiques.html" class="navElement">Statistiques</a></li>
+                <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
             </ul>
         </div>
 
 
         <div class="tableau">
         <?php
-          require_once("../back_end/Objects/DbConfig.php");
-          require_once("../back_end/Objects/Statistique.php");
-          $statistique = new Statistique();
-          $nbFemme = $statistique->getNbFemme();
-          $nbHomme = $statistique->getNbHomme();
-          $getNbHommeMoins25Ans = $statistique->getNbHommeMoins25Ans();
-          $getNbFemmeMoins25Ans = $statistique->getNbFemmeMoins25Ans();
-          $getNbHommeEntre25et50Ans = $statistique->getNbHommeEntre25et50Ans();
-          $getNbFemmeEntre25et50Ans = $statistique->getNbFemmeEntre25et50Ans();
-          $getNbHommePlus50Ans = $statistique->getNbHommePlus50Ans();
-          $getNbFemmePlus50Ans = $statistique->getNbFemmePlus50Ans();
+            require_once("../back_end/Objects/DbConfig.php");
+            require_once("../back_end/Objects/Statistique.php");
+            $statistique = new Statistique();
+            $nbFemme = $statistique->getNbFemme();
+            $nbHomme = $statistique->getNbHomme();
+            $getNbHommeMoins25Ans = $statistique->getNbHommeMoins25Ans();
+            $getNbFemmeMoins25Ans = $statistique->getNbFemmeMoins25Ans();
+            $getNbHommeEntre25et50Ans = $statistique->getNbHommeEntre25et50Ans();
+            $getNbFemmeEntre25et50Ans = $statistique->getNbFemmeEntre25et50Ans();
+            $getNbHommePlus50Ans = $statistique->getNbHommePlus50Ans();
+            $getNbFemmePlus50Ans = $statistique->getNbFemmePlus50Ans();
+            
+            $PrintAllNameMedecin = $statistique->PrintAllNameMedecin();
 
           echo '<table>
                   <caption>Statistique des âges des usagers</caption>
@@ -64,7 +66,7 @@
                       <tr>
                           <th scope="row">Plus de 50 ans</th>
                           <td>' . $getNbHommePlus50Ans[0] .'</td>
-                          <td>' . $getNbFemmePlus50Ans[0] .'</td>
+                          <td>' . $getNbFemmePlus50Ans[0] . '</td>
                       </tr>
                   </tbody>
               </table>';
@@ -76,10 +78,11 @@
                       <th scope="col">Nom & Prenom</th>
                       <th scope="col">Nombres d\'heures réalisés</th>
                   </tr>
-                  <tr>
-                      <td></td>
-                      <td></td>
-                  </tr>
+                  <tr>';
+                    foreach($PrintAllNameMedecin as $medecin){
+                        echo $medecin;
+                    }
+                  echo'</tr>
               </tbody>
           </table>';
 

@@ -30,10 +30,7 @@ class Usager
             }
     
             return $output;
-        } catch (Exception $pe) {
-            echo 'ERREUR : ' . $pe->getMessage();
-            return '';
-        }
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
     
     

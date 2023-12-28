@@ -5,6 +5,7 @@ require_once 'DbConfig.php';
 class Statistique {
 
     private DbConfig $dbconfig;
+    private $prenom;
 
     public function __construct() {
         $this->dbconfig = DbConfig::getDbConfig();
@@ -104,10 +105,24 @@ class Statistique {
             $req->execute();
             $nbFemmePlus50Ans = $req->fetch();
             return $nbFemmePlus50Ans;
-        } catch (Exception $pe) {
-            echo 'ERREUR : ' . $pe->getMessage();
-        }
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
+
+    public function PrintAllNameMedecin(){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare('SELECT prenom ,nom FROM medecin');
+            $req->execute();
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+
+            $outputTab = array();
+            foreach ($result as $medecin) {
+                $output = '<tr><th> '. $medecin['prenom'] . ' ' . $medecin['nom'] . '</th></tr>';
+                array_push($outputTab,$output);
+            }
+            return $outputTab;
+        }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
 
     
 }
