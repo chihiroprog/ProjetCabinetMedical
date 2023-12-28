@@ -6,7 +6,7 @@
     checkInputToAddRdv($_POST);
     $commandAddRdv = setCommandAddRdv($_POST);
     $commandAddRdv->addRdv();
-    header('Location: ../../front_end/Consultations.html');
+    header('Location: ../../front_end/Consultations.php');
 
 
     function checkInputToAddRdv($POST){

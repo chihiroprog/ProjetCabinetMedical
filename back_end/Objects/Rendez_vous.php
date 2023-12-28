@@ -120,7 +120,7 @@
 
     public function getAllRdv(){
         try{
-            $req = $this->dbconfig->getPDO()->prepare('SELECT nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager FROM rdv');
+            $req = $this->dbconfig->getPDO()->prepare('SELECT nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager FROM rdv ORDER BY date_rendez_vous');
             $req->execute();
             return $req;
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}

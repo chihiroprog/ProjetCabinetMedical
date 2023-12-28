@@ -7,20 +7,19 @@
     <title></title>
 
     <link  rel="stylesheet" href="style/global.css">
+    <link  rel="stylesheet" href="style/index.css">
 </head>
 
 <body>
-    <div class="navBar">
-        <ul>
-            <li><a href="index.html" class="navElement">Accueil</a></li>
-            <li><a href="Usagers.php" class="navElement">Usagers</a></li>
-            <li><a href="Consultations.php" class="navElement">Consultations</a></li>
-            <li><a href="Médecins.html" class="navElement">Médecins</a></li>
-            <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
-        </ul>
-    </div>
 
-</header>
+    <h1>Page de Connection</h1>
+    <h2>Vous êtes :</h2>
+    <form method="post" action="../back_end/Login/login.php">
+        <input type="submit" name="btnSecretaire" value="secretaire" />
+        <input type="submit" name="btnPatient" value="patient" />
+        <input type="submit" name="btnMedecin" value="medecin" />
+    </form>
+
 <body>
 
 
