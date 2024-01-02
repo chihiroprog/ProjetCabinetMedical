@@ -6,7 +6,7 @@
     $commandToDeleteMedecin = setDeleteMedecinCommand($_POST);
     $commandToDeleteMedecin->DeleteMedecin();
 
-    header('Location: ../../front_end/Médecins.html');
+    header('Location: ../../front_end/Médecins.php?success=3');
 
     function CheckInputDeleteMedecin($POST){
 

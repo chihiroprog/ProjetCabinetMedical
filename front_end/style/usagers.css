@@ -180,3 +180,12 @@ h1 {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
+#confirmationMessage {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    z-index: 1000;
+}

@@ -23,7 +23,8 @@ try {
         header('Location: ' . $url);
     } elseif ($commandCheckButtonClicked === "s") {
         $commandCheckRdv->DeleteRdv();
-        header('Location: ../../front_end/Consultations.php');
+        header('Location: ../../front_end/Consultations.php?success=1');
+
     } else {
         exceptions_error_handler('Bouton non reconnu');
     }

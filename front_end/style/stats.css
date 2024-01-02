@@ -1,36 +1,24 @@
+
+
+.tableau {
+    margin: 20px;
+}
+
 table {
-    width: 70%;
-    margin: 20px auto;
+    width: 100%;
     border-collapse: collapse;
-    border: 2px solid #3498db;
+    margin-bottom: 20px;
 }
 
 th, td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #3498db;
+    border: 1px solid #ddd; /* Bordure ajoutée */
 }
 
 th {
-    background-color: #3498db;
-    color: #fff;
+    background-color: #f2f2f2;
+    color: #333;
 }
 
-th, td {
-    width: 25%;
-}
-
-th:first-child, td:first-child {
-    width: 30%;
-}
-h1 {
-    color: #3498db;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-family: 'Arial', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 5px;
-}
+/* Ajoutez d'autres styles selon vos besoins */

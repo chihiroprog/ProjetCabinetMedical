@@ -17,7 +17,7 @@
                 <li><a href="index.html" class="navElement">Accueil</a></li>
                 <li><a href="Usagers.php" class="navElement">Usagers</a></li>
                 <li><a href="Consultations.php" class="navElement">Consultations</a></li>
-                <li><a href="Médecins.html" class="navElement">Médecins</a></li>
+                <li><a href="Médecins.php" class="navElement">Médecins</a></li>
                 <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
             </ul>
         </div>

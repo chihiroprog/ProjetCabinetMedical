@@ -7,6 +7,22 @@
 
     <link  rel="stylesheet" href="style/consultations.css">
     <link  rel="stylesheet" href="style/global.css">
+    <?php
+    if (isset($_GET['success']) && $_GET['success'] == 1) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("confirmationMessage").style.display = "none";
+                }, 5000);
+                </script>';
+    }
+    if (isset($_GET['success']) && $_GET['success'] == 2) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("confirmationMessageAjoutRdv").style.display = "none";
+                }, 5000);
+                </script>';
+    }
+    ?>
 </head>
 
 <header >
@@ -15,12 +31,17 @@
             <li><a href="index.html" class="navElement">Accueil</a></li>
             <li><a href="Usagers.php" class="navElement">Usagers</a></li>
             <li><a href="Consultations.php" class="navElement">Consultations</a></li>
-            <li><a href="Médecins.html" class="navElement">Médecins</a></li>
+            <li><a href="Médecins.php" class="navElement">Médecins</a></li>
             <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
         </ul>
     </div>
     
     <h1>Creation de rendez-vous</h1>
+    <?php
+    if (isset($_GET['success']) && $_GET['success'] == 2) {
+        echo '<div id="confirmationMessageAjoutRdv">Rendez-vous bien ajouté</div>';
+    }
+    ?>
     <div class="register">
         <form action="../back_end/rendez_vous/SearchUserRdv.php" method="post">
             <label for="numero_securite_social">numero de securité social du patient</label>
@@ -42,8 +63,12 @@
         <input type="submit" name="Reinitialiser" value="Reinitialiser">
     </form>
     <h1>Liste des rendez-vous</h1>
-
-
+    <?php
+        if (isset($_GET['success']) && $_GET['success'] == 1) {
+            echo '<div id="confirmationMessage">Rendez-vous bien supprimer</div>';
+        }
+    ?>
+    
     <?php
     require_once("../back_end/Objects/DbConfig.php");
     require_once("../back_end/Objects/Rendez_vous.php");
@@ -53,10 +78,8 @@
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['Reinitialiser'])) {
-            // Si le bouton "Réinitialiser" est cliqué, afficher tous les rendez-vous
             $commandButtonClicked = true;
         } else {
-            // Sinon, le bouton "Rechercher" est cliqué, traiter la recherche
             $commandButtonClicked = false;
             $commandSearchRdv = $_POST['medecin_selectionner'];
         }

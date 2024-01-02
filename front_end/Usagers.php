@@ -8,6 +8,29 @@
 
     <link  rel="stylesheet" href="style/usagers.css">
     <link  rel="stylesheet" href="style/global.css">
+    <?php
+    if (isset($_GET['success']) && $_GET['success'] == 1) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("confirmationMessage").style.display = "none";
+                }, 5000);
+              </script>';
+    }
+    if (isset($_GET['success']) && $_GET['success'] == 2) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("confirmationMessage").style.display = "none";
+                }, 5000);
+              </script>';
+    }
+    if (isset($_GET['success']) && $_GET['success'] == 3) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("confirmationMessage").style.display = "none";
+                }, 5000);
+              </script>';
+    }
+    ?>
 </head>
 
 <header >
@@ -17,7 +40,7 @@
             <li><a href="index.html" class="navElement">Accueil</a></li>
             <li><a href="Usagers.php" class="navElement">Usagers</a></li>
             <li><a href="Consultations.php" class="navElement">Consultations</a></li>
-            <li><a href="Médecins.html" class="navElement">Médecins</a></li>
+            <li><a href="Médecins.php" class="navElement">Médecins</a></li>
             <li><a href="Statistiques.php" class="navElement">Statistiques</a></li>
         </ul>
     </div>
@@ -31,13 +54,17 @@
         <div class="category">
             <h1>Usagers</h1>
         </div>
-        <!-- <?php
-                
-            $message = isset($_GET['message']) ? $_GET['message'] : '';
-            echo $message;
-            var_dump($message);
-            
-        ?> -->
+        <?php
+        if (isset($_GET['success']) && $_GET['success'] == 1) {
+            echo '<div id="confirmationMessage">Patient bien ajouté</div>';
+        }
+        if (isset($_GET['success']) && $_GET['success'] == 2) {
+            echo '<div id="confirmationMessage">Patient bien modifié</div>';
+        }
+        if (isset($_GET['success']) && $_GET['success'] == 3) {
+            echo '<div id="confirmationMessage">Patient bien supprimé</div>';
+        }
+        ?>
         <div class="global_gestion_user">
             <div class="ajout_usagers">
                 <form action="../back_end/Usager/AddUsager.php" method="post">
@@ -80,7 +107,6 @@
                 </form>
             </div>
 
-
             <div class="modifications_usagers">
             <form action="../back_end/Usager/SearchUsager.php" method="post">
                     <input type="hidden" name="context" value="Modify">
@@ -98,7 +124,6 @@
                     <input type="submit" value="Modifier">
                 </form>
             </div>
-
 
             <div class="suppresion_usagers">
             <form action="../back_end/Usager/SearchUsager.php" method="post">
