@@ -8,30 +8,36 @@ body {
 
 h1 {
     color: #3498db;
+    margin-bottom: 20px;
 }
 
 h2 {
     color: #333;
+    margin-bottom: 30px;
 }
 
 form {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
 input[type="submit"] {
     background-color: #3498db;
     color: #fff;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
+    padding: 15px 30px;
+    margin: 15px 10px;
+    border: 2px solid #2980b9;
     border-radius: 5px;
     cursor: pointer;
-    width: 15%;
-    height: 5%;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 input[type="submit"]:hover {
     background-color: #2980b9;
 }
+
+/* Ajoutez d'autres styles selon vos besoins */
