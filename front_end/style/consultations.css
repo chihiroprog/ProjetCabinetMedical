@@ -71,3 +71,26 @@
 .allRdv input[type="submit"]:hover {
     background-color: #2980b9;
 }
+.form_recherche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.form_recherche select{
+    padding: 10px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.form_recherche input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form_recherche input[type="submit"]:hover {
+    background-color: #2980b9;
+}

@@ -10,6 +10,11 @@
         private $nom;
         private $prenom;
         private $Id_Usager;
+        private $id_rendez_vous;
+        private $medecin_choose;
+        private $date_rdv;
+        private $duree_rdv;
+
 
     public function __construct(){
         $this->dbconfig = DbConfig::getDbConfig();
@@ -111,8 +116,8 @@
                 'numero_securite_social' => $this->numero_securite_social,
                 'duree_rdv' => $this->duree_rdv,
                 'date_rdv' => $this->date_rdv,
-                'Id_Medecin' => $this->Id_Medecin,
-                'Id_Usager' => $this->IdUsager,
+                'Id_Medecin' => $this->medecin_choose,
+                'Id_Usager' => $this->Id_Usager,
 
             ));
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
@@ -120,19 +125,139 @@
 
     public function getAllRdv(){
         try{
-            $req = $this->dbconfig->getPDO()->prepare('SELECT nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager FROM rdv ORDER BY date_rendez_vous');
+            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager FROM rdv ORDER BY date_rendez_vous');
             $req->execute();
             return $req;
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
 
     }
 
+    public function getModifyRdv(){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE id_rendez_vous = :id_rendez_vous');
+            $req->execute();
+            return $req;
+        }catch(Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
+    public function DeleteRdv(){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare(
+                'DELETE FROM rdv
+                WHERE id_rendez_vous = :id_rendez_vous');
+    
+            $req->execute(array(
+                'id_rendez_vous' => $this->id_rendez_vous,
+            ));
+            
+        }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
+    }
+    public function ModifyRdv(){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare(
+                'UPDATE rdv SET
+                Date_rendez_vous = :dateRdv,
+                Duree_rendez_vous = :dureeRdv,
+                Id_Medecin = :idMedecin,
+                Id_Usager = :idUsager,
+                Nom_patient = :nomUsager,
+                numero_securite_social = :numSecuriteSociale,
+                Prenom_patient = :prenomUsager
+                WHERE Id_rendez_vous = :idRdv'
+            );
+
+            $req->execute(array(
+                'dateRdv' => $this->date_rdv,
+                'dureeRdv' => $this->duree_rdv,
+                'idMedecin' => $this->medecin_choose,
+                'idUsager' => $this->Id_Usager,
+                'nomUsager' => $this->nom,
+                'numSecuriteSociale' => $this->numero_securite_social,
+                'prenomUsager' => $this->prenom,
+                'idRdv' => $this->id_rendez_vous
+            ));
+            var_dump($this->date_rdv, $this->duree_rdv, $this->medecin_choose, $this->Id_Usager, $this->nom, $this->numero_securite_social, $this->prenom, $this->id_rendez_vous);
+
+            $rowCount = $req->rowCount();
+            if ($rowCount > 0) {
+                echo "La modification a réussi. Nombre de lignes modifiées : $rowCount";
+            } else {
+                echo "Aucune modification effectuée.";
+            }
+
+    
+        } catch(Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+    public function SearchRdvByMedecin($medecin_selectionner){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient, prenom_patient, numero_securite_social, duree_rendez_vous, date_rendez_vous, Id_Medecin, Id_Usager 
+            FROM rdv 
+            WHERE Id_Medecin = :medecin_selectionner
+            ORDER BY date_rendez_vous');
+            $req->bindValue(':medecin_selectionner', $medecin_selectionner, PDO::PARAM_INT); // Utilisez le même nom ici
+    
+            $req->execute();
+            return $req;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
+    public function getUsagerIDByNameAndFristName($nom,$prenom){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT Id_Usager, nom,prenom FROM usager WHERE nom = :nom AND prenom = :prenom');
+            $req->execute(array(
+                ':prenom' => $prenom,
+                ':nom' => $nom,
+            ));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $result;
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
+    public function getAllRdvUsagerByIdUsager($Id_Usager){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Usager = :IdUsager');
+            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->execute();
+
+            return $req;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
+    
+    public function getMedecinIDByNameAndFristName($nom,$prenom){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT Id_Medecin, nom,prenom FROM medecin WHERE nom = :nom AND prenom = :prenom');
+            $req->execute(array(
+                ':prenom' => $prenom,
+                ':nom' => $nom,
+            ));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+    
+            return $result;
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
+    public function getAllRdvMedecinByIdMedecin($Id_Medecin){
+        // Sélectionne toutes les lignes où Id_Medecin est égal à $Id_Medecin dans la table rendez-vous
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Medecin = :IdMedecin');
+            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->execute();
+
+            return $req;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
     
     public function setNumeroSecuriteSocial($numero_securite_social){
         $this->numero_securite_social = $numero_securite_social;
     }
-    public function setmedecinChoseForRdv($Id_Medecin){
-        $this->Id_Medecin = $Id_Medecin;
+    public function setmedecinChoseForRdv($medecin_choose){
+        $this->medecin_choose = $medecin_choose;
     }
     public function setDateRdv($date_rdv){
         $this->date_rdv = $date_rdv;
@@ -146,11 +271,39 @@
     public function setPrenom($prenom){
         $this->prenom = $prenom;
     }
-    public function setIdUsager($IdUsager){
-        $this->IdUsager = $IdUsager;
+    public function setIdUsager($Id_Usager){
+        $this->Id_Usager = $Id_Usager;
+    }
+    public function setIdRdv($id_rendez_vous){
+        $this->id_rendez_vous = $id_rendez_vous;
     }
 
 
-    
+
+    public function getIdRdv() {
+        return $this->id_rendez_vous;
+    }
+    public function getDateRdv() {
+        return $this->date_rdv;
+    }
+    public function getDureeRdv() {
+        return $this->duree_rdv;
+    }
+    public function getMedecinChoseForRdv() {
+        return $this->medecin_choose;
+    }
+    public function getNom() {
+        return $this->nom;
+    }
+    public function getPrenom() {
+        return $this->prenom;
+    }
+    public function getNumeroSecuriteSocial() {
+        return $this->numero_securite_social;
+    }
+    public function getIdUsager() {
+        return $this->Id_Usager;
+    }
+
 }
 ?>

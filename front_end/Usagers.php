@@ -31,10 +31,15 @@
         <div class="category">
             <h1>Usagers</h1>
         </div>
-
+        <!-- <?php
+                
+            $message = isset($_GET['message']) ? $_GET['message'] : '';
+            echo $message;
+            var_dump($message);
+            
+        ?> -->
         <div class="global_gestion_user">
             <div class="ajout_usagers">
-                  
                 <form action="../back_end/Usager/AddUsager.php" method="post">
                     <h2>Ajouter un usager</h2>
                     <legend>Sexe</legend>
