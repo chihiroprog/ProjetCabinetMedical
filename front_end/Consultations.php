@@ -72,6 +72,8 @@
     <?php
     require_once("../back_end/Objects/DbConfig.php");
     require_once("../back_end/Objects/Rendez_vous.php");
+    require_once("../back_end/Objects/Medecin.php");
+
 
     $commandButtonClicked = true;
     $commandSearchRdv = null;
@@ -91,21 +93,21 @@
     } else {
         $allRdv = $statistique->getallRdv();
     }
-    
+    $medecin = new Medecin();
 
     if ($allRdv !== null) {
         foreach ($allRdv as $rdv) {
+            $getInfoMedecin = $medecin->getNameAndFirstNameByID($rdv['Id_Medecin']);
+            
             echo '<link rel="stylesheet" href="style/consultations.css">';
             echo '<div class="allRdv">';
             echo '<form action="../back_end/rendez_vous/CheckRdv.php" method="post">';
-            echo 'ID: <input type="text"readonly name="id_rendez_vous" value="' . $rdv['id_rendez_vous'] . '"><br>';
-            echo 'Prenom: <input type="text"readonly name="nom" value="' . $rdv['nom_patient'] . '"><br>';
-            echo 'Nom: <input type="text" readonly name="prenom" value="' . $rdv['prenom_patient'] . '" ><br>';
-            echo 'numero de sécurité sociale: <input type="text"readonly name="numero_securite_social"  value="' . $rdv['numero_securite_social'] . '"><br>';
-            echo 'duree_rendez_vous: <input type="text"readonly  name="duree_rendez_vous" value="' . $rdv['duree_rendez_vous'] . '"><br>';
-            echo 'date_rendez_vous: <input type="text"readonly  name="date_rendez_vous" value="' . $rdv['date_rendez_vous'] . '"><br>';
-            echo 'Id_Medecin: <input type="text"readonly  name="Id_Medecin" value="' . $rdv['Id_Medecin'] . '"><br>';
-            echo 'Id_Usager: <input type="text"readonly  name="Id_Usager" value="' . $rdv['Id_Usager'] . '"><br>';
+            echo '<input type="hidden"readonly name="id_rendez_vous" value="' . $rdv['id_rendez_vous'] . '"><br>';
+            echo 'Nom & prénom du patient : <input type="text"readonly name="nom" value="' . $rdv['nom_patient'] . ' ' . $rdv['prenom_patient'] . '"><br>';
+            echo 'Durée rendez vous : <input type="text"readonly  name="duree_rendez_vous" value="' . $rdv['duree_rendez_vous'] . ' min"><br>';
+            echo 'Date rendez vous : <input type="text"readonly  name="date_rendez_vous" value="' . $rdv['date_rendez_vous'] . '"><br>';
+            echo 'Nom & prénom du médecin : <input type="text"readonly  name="Id_Medecin" value="' . $getInfoMedecin . '"><br>';
+            echo '<input type="hidden"readonly  name="Id_Usager" value="' . $rdv['Id_Usager'] . '"><br>';
             echo '<input type="submit" name="Modifier" value="Modifier">';
             echo '<input type="submit" name="Supprimer" value="Supprimer">';
             echo '</form>';

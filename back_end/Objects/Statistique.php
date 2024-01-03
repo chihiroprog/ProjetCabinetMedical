@@ -123,6 +123,10 @@ class Statistique {
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
 
+    //je selectionne un medecin un par un 
+    //je selectionne les rdv affecter au medecin
+    //j'aditionne tout les durée des rdv
+
 
     
 }

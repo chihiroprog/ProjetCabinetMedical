@@ -39,13 +39,13 @@
             echo '<div class="allRdv">';
                 echo '<form action="../../back_end/rendez_vous/ModifyRdv.php" method="POST">';
                 
-                echo '<input type="text" id="idRdv" name="idRdv" value="' . $rendezVous->getIdRdv() . '"><br>';
+                //echo '<input type="hidden" id="idRdv" name="idRdv" value="' . $rendezVous->getIdRdv() . '"><br>';
 
                 echo '<label for="idMedecin">ID du médecin:</label>';
                 echo '<input type="text" id="idMedecin" name="idMedecin" value="' . $rendezVous->getMedecinChoseForRdv() . '"><br>';
                 
                 echo '<label for="dateRdv">Date du rendez-vous:</label>';
-                echo '<input type="text" id="dateRdv" name="dateRdv" value="' . $rendezVous->getDateRdv() . '"><br>';
+                echo '<input type="date" id="dateRdv" name="dateRdv" value="' . $rendezVous->getDateRdv() . '"><br>';
                 
                 echo '<label for="dureeRdv">Durée du rendez-vous:</label>';
                 echo '<input type="text" id="dureeRdv" name="dureeRdv" value="' . $rendezVous->getDureeRdv() . '"><br>';
@@ -59,8 +59,7 @@
                 echo '<label for="numSecuriteSociale">Numéro de sécurité sociale de l\'usager:</label>';
                 echo '<input type="text" id="numSecuriteSociale" name="numSecuriteSociale" value="' . $rendezVous->getNumeroSecuriteSocial() . '"><br>';
                 
-                echo '<label for="idUsager">ID de l\'usager:</label>';
-                echo '<input type="text" id="idUsager" name="idUsager" value="' . $rendezVous->getIdUsager() . '"><br>';
+                echo '<input type="hidden" id="idUsager" name="idUsager" value="' . $rendezVous->getIdUsager() . '"><br>';
 
 
                 echo '<input type="submit" value="Modifier">';

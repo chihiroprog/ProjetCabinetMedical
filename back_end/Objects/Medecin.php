@@ -126,6 +126,19 @@ function SearchMedecin($context){
         }
     }
 
+    public function getNameAndFirstNameByID($Id_Medecin){
+        try {
+            $req = $this->dbConfig->getPDO()->prepare('SELECT nom, prenom FROM medecin WHERE Id_Medecin = :IdMedecin');
+            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT);
+            $req->execute();
+    
+            $result = $req->fetch(PDO::FETCH_ASSOC);
+    
+            return $result['nom'] . ' ' . $result['prenom'];
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
     
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++SETTER+++++++++++++++++++++++++++++++++++++++++++++++
