@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un médecin</title>
+</head>
+<body>
+    <?php
+        session_start();
+        require_once '../../back_end/Objects/Medecin.php';
+        $req = $_SESSION['req'];
+        foreach ($req as $row) {
+            echo '<link rel="stylesheet" href="../style/modifyMedecin.css">';
+            echo '<div class="modifUsager">';
+            echo '<form action="../../back_end/Medecin/ModifyMedecin.php" method="POST" class="modify-form">';
+            
+            echo '<input name="Id_Medecin" type="hidden" value="' . $row['Id_Medecin'] . '">';
+            
+            echo '<label class="radio-label" for="civilite_homme"><input type="radio" name="civilite" value="homme" required';
+            echo ($row['civilite'] == 'homme') ? ' checked' : '';
+            echo '>homme</label>';
+            
+            echo '<label class="radio-label" for="civilite_femme"><input type="radio" name="civilite" value="femme" required';
+            echo ($row['civilite'] == 'femme') ? ' checked' : '';
+            echo '>femme</label><br>';
+            
+            echo 'Nom: <input type="text"  name="nom" value="' . $row['nom'] . '" ><br>';
+            echo 'Prénom: <input type="text" name="prenom" value="' . $row['prenom'] . '"><br>';
+            
+            echo '<input type="submit" value="Modifier">';
+            echo '</form>';
+            echo '</div>';
+
+        }
+    ?>
+</body>
+</html>

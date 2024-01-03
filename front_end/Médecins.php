@@ -76,7 +76,7 @@
                     <input for="nom" type="text" name="nom" id="nom" required>
                     
                     <label for="prenom">Prenom</label>
-                    <input for="prenom" type="text" name="prenom" id="prenom" required>
+                    <input for="prenom" type="text" class="bas" name="prenom" id="prenom" required>
 
                     <input type="submit" value="Ajouter">
                 </form>
@@ -84,13 +84,13 @@
             <div class="modifications_usagers">
                 <form action="../back_end/Medecin/SearchMedecin.php" method="post">
                     <input type="hidden" name="context" value="Modify">
-                    <h2>Modifier un usager</h2>
+                    <h2>Modifier un médecin</h2>
 
                     <label for="nom">Nom</label>
                     <input type="text" name="nom" id="nom" required>
 
                     <label for="prenom">Prenom</label>
-                    <input type="text" name="prenom" id="prenom" required>
+                    <input type="text" class="bas" name="prenom" id="prenom" required>
 
                     <input type="submit" value="Modifier">
                 </form>
@@ -104,7 +104,7 @@
                     <input type="text" name="nom" id="nom" >
 
                     <label for="prenom">Prenom</label>
-                    <input type="text" name="prenom" id="prenom" >
+                    <input type="text" name="prenom" class="bas"id="prenom" >
 
                     <input type="submit" value="Supprimer">
                 </form>

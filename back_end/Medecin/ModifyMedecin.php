@@ -1,12 +1,11 @@
 <?php
     require_once '../Objects/Medecin.php';
     require_once '../Objects/dbConfig.php';
-
     CheckInputModifyMedecin($_POST);
     $commandToModifyMedecin = setModifyMedecinCommand($_POST);
     $commandToModifyMedecin->ModifyMedecin();
     header('Location: ../../front_end/Médecins.php?success=2');
-    
+
     function CheckInputModifyMedecin($POST){
 
         if(!isset($POST['Id_Medecin'])){
@@ -26,7 +25,6 @@
     function exceptions_error_handler($message) {
         throw new ErrorException($message);
     }
-
     function setModifyMedecinCommand($POST){
         $commandToModifyMedecinToReturn = new Medecin();
         $commandToModifyMedecinToReturn->setNom($POST['nom']);

@@ -194,7 +194,7 @@
             FROM rdv 
             WHERE Id_Medecin = :medecin_selectionner
             ORDER BY date_rendez_vous');
-            $req->bindValue(':medecin_selectionner', $medecin_selectionner, PDO::PARAM_INT); // Utilisez le même nom ici
+            $req->bindValue(':medecin_selectionner', $medecin_selectionner, PDO::PARAM_INT); 
     
             $req->execute();
             return $req;
@@ -218,7 +218,7 @@
     public function getAllRdvUsagerByIdUsager($Id_Usager){
         try {
             $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Usager = :IdUsager');
-            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT); 
             $req->execute();
 
             return $req;
@@ -241,10 +241,9 @@
     }
 
     public function getAllRdvMedecinByIdMedecin($Id_Medecin){
-        // Sélectionne toutes les lignes où Id_Medecin est égal à $Id_Medecin dans la table rendez-vous
         try {
             $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Medecin = :IdMedecin');
-            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT); 
             $req->execute();
 
             return $req;

@@ -8,7 +8,6 @@ $commandCheckButtonClicked = CheckButtonClicked($_POST);
 
 try {
     if ($commandCheckButtonClicked === "m") {
-        // $commandCheckRdv->getModifyRdv();
         $url = '../../front_end/rdv/ModifyRdv.php?' . http_build_query([
             'nom' => $commandCheckRdv->getNom(),
             'id_rendez_vous' => $commandCheckRdv->getIdRdv(),

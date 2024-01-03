@@ -93,7 +93,6 @@
     }
     
 
-    // Affichez les rendez-vous
     if ($allRdv !== null) {
         foreach ($allRdv as $rdv) {
             echo '<link rel="stylesheet" href="style/consultations.css">';

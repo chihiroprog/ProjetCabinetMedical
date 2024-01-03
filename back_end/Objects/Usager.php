@@ -66,42 +66,19 @@ class Usager
                 ':nom' => $this->nom,
                 ':prenom' => $this->prenom,
             ));
+            session_start();
 
             if($context === 'Modify'){
-                $this->printModifyUser($req);
+                $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
+                header('Location: ../../front_end/usager/ModifyUsager.php');
             }elseif($context === 'Delete'){
-                $this->printDeleteUser($req);
+                $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
+                header('Location: ../../front_end/usager/DeleteUsager.php');
             }
         } 
         catch (Exception $pe) { echo 'ERREUR : ' . $pe->getMessage(); }
     }
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++AFFICHAGE POUR MODIF USER+++++++++++++++++++++++++++++++++++++++++++++++
 
-    function printModifyUser($req){
-        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            echo '<form action="../Usager/ModifyUser.php" method="POST">';
-            
-            echo '<input type="hidden" name="user_id" value="' . $row['Id_Usager'] . '">';
-    
-            echo '<label for="civilite_homme"><input type="radio" name="form_civilite" value="homme" required';
-            echo ($row['civilite'] == 'homme') ? ' checked' : '';
-            echo '>homme</label>';
-            
-            echo '<label for="civilite_femme"><input type="radio" name="form_civilite" value="femme" required';
-            echo ($row['civilite'] == 'femme') ? ' checked' : '';
-            echo '>femme</label><br>';
-    
-            echo 'Nom: <input type="text"  name="form_nom" value="' . $row['nom'] . '" ><br>';
-            echo 'Prénom: <input type="text" name="form_prenom" value="' . $row['prenom'] . '"><br>';
-            echo 'Adresse: <input type="text" name="form_adresse" value="' . $row['adresse'] . '"><br>';
-            echo 'Date de naissance: <input type="text" name="form_date_naissance" value="' . $row['date_naissance'] . '"><br>';
-            echo 'Lieu de naissance: <input type="text" name="form_lieu_naissance" value="' . $row['lieu_naissance'] . '"><br>';
-            echo 'Numéro de sécurité sociale: <input type="text" name="form_numero_securite_social" value="' . $row['numero_securite_social'] . '"><br>';
-            
-            echo '<input type="submit" value="Modifier">';
-            echo '</form>';
-        }
-    }
     //+++++++++++++++++++++++++++++++++++++++++++++++++++AFFICHAGE POUR DELETE USER+++++++++++++++++++++++++++++++++++++++++++++++
     function printDeleteUser($req){
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -206,10 +183,9 @@ class Usager
     }
 
     public function getAllRdvUsagerByIdUsager($Id_Usager){
-        // Sélectionne toutes les lignes où Id_Medecin est égal à $Id_Medecin dans la table rendez-vous
         try {
             $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Usager = :IdUsager');
-            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT);
             $req->execute();
 
             return $req;

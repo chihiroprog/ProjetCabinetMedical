@@ -28,65 +28,27 @@ class Medecin{
 
     }
 //+++++++++++++++++++++++++++++++++++++++++++++++++SEARCH MEDECIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    function SearchMedecin($context){
-        try{    
-            $req = $this->dbConfig->getPDO()->prepare('SELECT Id_Medecin , nom , prenom , civilite FROM medecin WHERE nom = :nom AND prenom = :prenom');
-            $req->execute(array(
-                'nom' => $this->nom,
-                'prenom' => $this->prenom,
-            ));
-            if($context === 'Modify'){
-                $this->printModifyMedecin($req);            
-            }elseif($context === 'Delete'){
-                $this->printDeleteMedecin($req);
-            }
-        }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
-    }
+function SearchMedecin($context){
+    try {    
+        $req = $this->dbConfig->getPDO()->prepare('SELECT Id_Medecin, nom, prenom, civilite FROM medecin WHERE nom = :nom AND prenom = :prenom');
+        $req->execute(array(
+            'nom' => $this->nom,
+            'prenom' => $this->prenom,
+        ));
+        session_start();
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++PRINT MODIFY MEDECIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    function printModifyMedecin($req){
-        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            echo '<form action="../Medecin/ModifyMedecin.php" method="POST">';
-
-            echo '<input name="Id_Medecin" type="hidden" value="' . $row['Id_Medecin'] . '">';
-
-            echo '<label for="civilite_homme"><input type="radio" name="civilite" value="homme" required';
-            echo ($row['civilite'] == 'homme') ? ' checked' : '';
-            echo '>homme</label>';
-            
-            echo '<label for="civilite_femme"><input type="radio" name="civilite" value="femme" required';
-            echo ($row['civilite'] == 'femme') ? ' checked' : '';
-            echo '>femme</label><br>';
-    
-            echo 'Nom: <input type="text"  name="nom" value="' . $row['nom'] . '" ><br>';
-            echo 'Prénom: <input type="text" name="prenom" value="' . $row['prenom'] . '"><br>';
-            
-            echo '<input type="submit" value="Modifier">';
-            echo '</form>';
+        if($context === 'Modify'){
+            $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
+            header('Location: ../../front_end/medecin/ModifyMedecin.php');
+        } elseif($context === 'Delete'){
+            $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
+            header('Location: ../../front_end/medecin/DeleteMedecin.php');
         }
+    } catch(Exception $pe){
+        echo 'ERREUR : ' . $pe->getMessage();
     }
-//+++++++++++++++++++++++++++++++++++++++++++++++++PRINT DELETE MEDECIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    function printDeleteMedecin($req){
-        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            echo '<form action="../Medecin/DeleteMedecin.php" method="POST">';
+}
 
-            echo '<input name="Id_Medecin" type="hidden" value="' . $row['Id_Medecin'] . '">';
-
-            echo '<label for="civilite_homme"><input type="radio" disabled name="civilite" value="homme" required';
-            echo ($row['civilite'] == 'homme') ? ' checked' : '';
-            echo '>homme</label>';
-            
-            echo '<label for="civilite_femme"><input type="radio" name="civilite" disabled value="femme" required';
-            echo ($row['civilite'] == 'femme') ? ' checked' : '';
-            echo '>femme</label><br>';
-    
-            echo 'Nom: <input type="text" disabled name="nom" value="' . $row['nom'] . '" ><br>';
-            echo 'Prénom: <input type="text" disabled name="prenom" value="' . $row['prenom'] . '"><br>';
-            
-            echo '<input type="submit" value="Supprimer">';
-            echo '</form>';
-        }
-    }
 //+++++++++++++++++++++++++++++++++++++++++++++++++DELETE MEDECIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     function DeleteMedecin(){
         try{
@@ -128,7 +90,6 @@ class Medecin{
     
             $medecin = $req->fetch();
             if ($medecin) {
-                // Utilisez urlencode pour encoder les valeurs dans l'URL
                 header('Location: ../../front_end/medecin/medecin.php?nom=' . urlencode($medecin['nom']) . '&prenom=' . urlencode($medecin['prenom']));
                 exit;
             } else {
@@ -154,10 +115,9 @@ class Medecin{
     }
 
     public function getAllRdvMedecinByIdMedecin($Id_Medecin){
-        // Sélectionne toutes les lignes où Id_Medecin est égal à $Id_Medecin dans la table rendez-vous
         try {
             $req = $this->dbConfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Medecin = :IdMedecin');
-            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT); // Lie la valeur du paramètre
+            $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT);
             $req->execute();
 
             return $req;

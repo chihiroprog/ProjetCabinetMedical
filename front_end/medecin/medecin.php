@@ -34,7 +34,6 @@
                     echo 'Nom du patient: <input type="text" readonly name="prenom" value="' . $rdv['Prenom_patient'] . '" ><br>';
                     echo 'duree rendez vous: <input type="text"readonly  name="duree_rendez_vous" value="' . $rdv['Duree_rendez_vous'] . ' min"><br>';
                     echo 'date rendez vous: <input type="text"readonly  name="date_rendez_vous" value="' . $rdv['Date_rendez_vous'] . '"><br>';
-                   // echo 'Id_Medecin: <input type="text"readonly  name="Id_Medecin" value="' . $rdv['Id_Medecin'] . '"><br>';
                     echo '</form>';
                 echo '</div>';
 
