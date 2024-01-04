@@ -1,0 +1,59 @@
+.AddRdv {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.AddRdv form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.AddRdv input[type="text"],
+.AddRdv input[type="number"],
+.AddRdv input[type="date"],
+.AddRdv input[type="time"],
+.AddRdv select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.AddRdv select {
+    margin-bottom: 20px; /* Augmenter l'espacement pour les sélecteurs */
+}
+
+.AddRdv input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.AddRdv input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+.AddRdv input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    padding: 12px 30px; /* Ajuster la taille du bouton ici */
+    border: none;
+    border-radius: 5px;
+}
+
+.AddRdv input[type="submit"]:hover {
+    background-color: #2980b9;
+}
