@@ -13,7 +13,7 @@
         foreach ($req as $row) {
             echo '<link rel="stylesheet" href="../style/modifyUsager.css">';
             echo '<div class="modifUsager">';
-            echo '<form action="../Usager/ModifyUser.php" method="POST" class="modify-form">';
+            echo '<form action="../../back_end/Usager/DeleteUser.php" method="POST" class="modify-form">';
             
             echo '<input type="hidden" name="user_id" value="' . $row['Id_Usager'] . '">';
     
@@ -37,6 +37,7 @@
             echo '</div>';
 
         }
+        session_write_close();
     ?>
 </body>
 </html>

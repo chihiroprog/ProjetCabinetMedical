@@ -44,6 +44,7 @@ function SearchMedecin($context){
             $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
             header('Location: ../../front_end/medecin/DeleteMedecin.php');
         }
+        session_write_close();
     } catch(Exception $pe){
         echo 'ERREUR : ' . $pe->getMessage();
     }

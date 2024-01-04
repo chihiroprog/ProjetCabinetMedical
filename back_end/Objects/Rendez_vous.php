@@ -2,11 +2,11 @@
 
     require_once 'dbConfig.php';
     require_once 'Usager.php';
-    class Rendez_vous{
+    class Rendez_vous {
 
         private DbConfig $dbConfig;
         private $numero_securite_social;
-        private Usager $usager;
+        public Usager $usager;
         private $nom;
         private $prenom;
         private $Id_Usager;
@@ -68,27 +68,6 @@
     
             return $result;
         } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
-    }
-
-    public function printCreateRendezVous($listeMedecins)
-    {
-    
-        echo '<form action="../rendez_vous/AddRdv.php" method="post">';
-        echo '<input type="hidden" name="user_id" value="' . $this->usager->getIdUsager() . '">';
-        echo 'Nom: <input type="text" readonly name="nom" value="' . $this->usager->getNom() . '" ><br>';
-        echo 'Prénom: <input type="text"readonly name="prenom"  value="' . $this->usager->getPrenom() . '"><br>';
-        echo 'Numéro de sécurité sociale: <input type="text"readonly  name="numero_securite_social" value="' . $this->usager->getNumeroSecuriteSocial() . '"><br>';
-        echo 'Médecin Référent: <select name="Id_Medecin" >';
-        foreach ($listeMedecins as $medecin) {
-            echo '<option value="' . $medecin['Id_Medecin'] . '">' . $medecin['nom'] . ' ' . $medecin['prenom'] . '</option>';
-        }
-        echo '</select><br>';
-        echo 'Date du rendez-vous : <input type="date" name="date_rdv"required> <br>';
-        echo 'Heure du rendez-vous: <input type="time" name="heure_rdv" required><br>';
-        echo 'Durée du rendez-vous en minute: <input type="number" name="duree_rdv" value="30" required> <br>';
-        echo '<input type="submit" value="Créer">';
-        echo '</form>';
-
     }
 
     public function sortMedecinReferentFirst($listeMedecins){

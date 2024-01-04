@@ -11,7 +11,7 @@
     header('Location: ../../front_end/Usagers.php?success=2');
 
     function checkInputToModify($POST){
-        if(!isset($POST['form_civilite'])){
+        if(!isset($POST['civilite'])){
             exceptions_error_handler('civilite pas fait');
         }
 
@@ -48,7 +48,7 @@
     function setComandModifyUser($POST){
         $commandModifyUserToReturn = new Usager();
         $commandModifyUserToReturn->setId($POST['user_id']);
-        $commandModifyUserToReturn->setCivilite($POST['form_civilite']);
+        $commandModifyUserToReturn->setCivilite($POST['civilite']);
         $commandModifyUserToReturn->setNom($POST['form_nom']);
         $commandModifyUserToReturn->setPrenom($POST['form_prenom']);
         $commandModifyUserToReturn->setAdresse($POST['form_adresse']);

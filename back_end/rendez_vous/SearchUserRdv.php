@@ -1,14 +1,19 @@
 <?php
+    session_start();
 
     require_once '../Objects/dbConfig.php';
     require_once '../Objects/Rendez_vous.php';
-    
+
     checkInputToSearch($_POST);
     $commandSearch = setCommandSearch($_POST);
-    $commandSearch->SearchUserForRDV();
-    $listeMedecins = $commandSearch->getNomPrenomMedecin(); 
-    $listeMedecinSorted = $commandSearch->sortMedecinReferentFirst($listeMedecins);
-    $commandSearch->printCreateRendezVous($commandSearch->sortMedecinReferentFirst($listeMedecins));
+
+    $_SESSION['commandSearchData'] = [
+        'numeroSecuriteSocial' => $commandSearch->getNumeroSecuriteSocial(),
+    ];
+
+    header('Location: ../../front_end/rdv/AddRdv.php');
+    session_write_close();
+
 
     function checkInputToSearch($POST){
         if(!isset($POST['numero_securite_social'])){
@@ -25,5 +30,6 @@
     function exceptions_error_handler($message) {
         throw new ErrorException($message);
     }
+?>
 
-?>  
+

@@ -75,6 +75,7 @@ class Usager
                 $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
                 header('Location: ../../front_end/usager/DeleteUsager.php');
             }
+            session_write_close();
         } 
         catch (Exception $pe) { echo 'ERREUR : ' . $pe->getMessage(); }
     }
