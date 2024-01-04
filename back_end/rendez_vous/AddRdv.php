@@ -31,12 +31,16 @@
         if(!isset($POST['duree_rdv'])){
             exceptions_error_handler('duree_rdv null');
         }
+        if(!isset($POST['heure_rdv'])){
+            exceptions_error_handler('heure_rdv null');
+        }
     }
 
     function setCommandAddRdv($POST){
         $commandAddRdvToReturn = new Rendez_vous();
         
         $commandAddRdvToReturn->setDateRdv($POST['date_rdv']);
+        $commandAddRdvToReturn->setHeureRdv($POST['heure_rdv']);
         $commandAddRdvToReturn->setDureeRdv($POST['duree_rdv']);
         $commandAddRdvToReturn->setmedecinChoseForRdv($POST['Id_Medecin']);
         $commandAddRdvToReturn->setNom($POST['nom']);

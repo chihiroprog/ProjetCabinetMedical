@@ -14,7 +14,7 @@
         private $medecin_choose;
         private $date_rdv;
         private $duree_rdv;
-
+        private $heure_rdv;
 
     public function __construct(){
         $this->dbconfig = DbConfig::getDbConfig();
@@ -84,6 +84,7 @@
         }
         echo '</select><br>';
         echo 'Date du rendez-vous : <input type="date" name="date_rdv"required> <br>';
+        echo 'Heure du rendez-vous: <input type="time" name="heure_rdv" required><br>';
         echo 'Durée du rendez-vous en minute: <input type="number" name="duree_rdv" value="30" required> <br>';
         echo '<input type="submit" value="Créer">';
         echo '</form>';
@@ -107,8 +108,8 @@
 
     public function addRdv(){
         try{
-            $req = $this->dbconfig->getPDO()->prepare('INSERT INTO rdv (nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager) 
-            VALUES (:nom , :prenom , :numero_securite_social, :duree_rdv , :date_rdv , :Id_Medecin , :Id_Usager)');
+            $req = $this->dbconfig->getPDO()->prepare('INSERT INTO rdv (nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager,heure_rendez_vous) 
+            VALUES (:nom , :prenom , :numero_securite_social, :duree_rdv , :date_rdv , :Id_Medecin , :Id_Usager, :heure_rdv)');
 
             $req->execute(array(
                 'nom' => $this->nom,
@@ -118,6 +119,7 @@
                 'date_rdv' => $this->date_rdv,
                 'Id_Medecin' => $this->medecin_choose,
                 'Id_Usager' => $this->Id_Usager,
+                'heure_rdv' =>$this->heure_rdv,
 
             ));
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
@@ -125,7 +127,7 @@
 
     public function getAllRdv(){
         try{
-            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager FROM rdv ORDER BY date_rendez_vous');
+            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient , prenom_patient , numero_securite_social, duree_rendez_vous , date_rendez_vous , Id_Medecin , Id_Usager , heure_rendez_vous FROM rdv ORDER BY date_rendez_vous');
             $req->execute();
             return $req;
         }catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
@@ -190,7 +192,7 @@
     }
     public function SearchRdvByMedecin($medecin_selectionner){
         try {
-            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient, prenom_patient, numero_securite_social, duree_rendez_vous, date_rendez_vous, Id_Medecin, Id_Usager 
+            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient, prenom_patient, numero_securite_social, duree_rendez_vous, date_rendez_vous, Id_Medecin, Id_Usager ,heure_rendez_vous
             FROM rdv 
             WHERE Id_Medecin = :medecin_selectionner
             ORDER BY date_rendez_vous');
@@ -217,7 +219,7 @@
 
     public function getAllRdvUsagerByIdUsager($Id_Usager){
         try {
-            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Usager = :IdUsager');
+            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient, prenom_patient, numero_securite_social, duree_rendez_vous, date_rendez_vous, Id_Medecin, Id_Usager ,heure_rendez_vous FROM rdv WHERE Id_Usager = :IdUsager');
             $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT); 
             $req->execute();
 
@@ -242,7 +244,7 @@
 
     public function getAllRdvMedecinByIdMedecin($Id_Medecin){
         try {
-            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM rdv WHERE Id_Medecin = :IdMedecin');
+            $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient, prenom_patient, numero_securite_social, duree_rendez_vous, date_rendez_vous, Id_Medecin, Id_Usager ,heure_rendez_vous FROM rdv WHERE Id_Medecin = :IdMedecin');
             $req->bindValue(':IdMedecin', $Id_Medecin, PDO::PARAM_INT); 
             $req->execute();
 
@@ -251,6 +253,12 @@
             echo 'ERREUR : ' . $pe->getMessage();
         }
     }
+    function convertMinutesToHoursMinutes($minutes) {
+        $hours = floor($minutes / 60);
+        $remainingMinutes = $minutes % 60;
+        return $hours . ' h ' . $remainingMinutes . ' min';
+    }
+
     
     public function setNumeroSecuriteSocial($numero_securite_social){
         $this->numero_securite_social = $numero_securite_social;
@@ -276,7 +284,9 @@
     public function setIdRdv($id_rendez_vous){
         $this->id_rendez_vous = $id_rendez_vous;
     }
-
+    public function setHeureRdv($heure_rdv){
+        $this->heure_rdv = $heure_rdv;
+    }
 
 
     public function getIdRdv() {
@@ -303,6 +313,8 @@
     public function getIdUsager() {
         return $this->Id_Usager;
     }
-
+    public function getHeureRdv(){
+        return $this->heure_rdv;
+    }
 }
 ?>

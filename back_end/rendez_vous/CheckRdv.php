@@ -57,6 +57,9 @@ function checkInputToCheckRdv($POST)
     if (!isset($POST['id_rendez_vous'])) {
         exceptions_error_handler('id rdv null');
     }
+    if(!isset($POST['heure_rendez_vous'])){
+        exceptions_error_handler('heure_rdv null');
+    }
     
 }
 
@@ -72,6 +75,8 @@ function setCommandCheckRdv($POST)
     $commandCheckRevToReturn->setPrenom($POST['prenom']);
     $commandCheckRevToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
     $commandCheckRevToReturn->setIdUsager($POST['Id_Usager']);
+    $commandCheckRevToReturn->setHeureRdv($POST['heure_rdv']);
+
     return $commandCheckRevToReturn;
 }
 
