@@ -67,3 +67,25 @@ header {
 .navElement:hover {
     background-color: #2980b9;
 }
+.button_back {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px; 
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.button_back:hover {
+    background-color: #2980b9;
+    text-decoration: none; 
+}
+.button_back a:visited {
+    color: white; 
+    text-decoration: none; 
+}
+

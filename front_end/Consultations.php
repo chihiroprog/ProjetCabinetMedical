@@ -22,6 +22,13 @@
                 }, 5000);
                 </script>';
     }
+    if (isset($_GET['echec']) && $_GET['echec'] == 1) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("FailMessageAjoutrdv").style.display = "none";
+                }, 5000);
+                </script>';
+    }
     ?>
 </head>
 
@@ -40,6 +47,9 @@
     <?php
     if (isset($_GET['success']) && $_GET['success'] == 2) {
         echo '<div id="confirmationMessageAjoutRdv">Rendez-vous bien ajouté</div>';
+    }
+    if (isset($_GET['echec']) && $_GET['echec'] == 1) {
+        echo '<div id="FailMessageAjoutrdv">Colision entre les rendez-vous, Rendez-vous pas ajouté !</div>';
     }
     ?>
     <div class="register">

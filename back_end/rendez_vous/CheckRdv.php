@@ -18,6 +18,7 @@ try {
             'prenom_usager' => $commandCheckRdv->getPrenom(),
             'numero_secu_usager' => $commandCheckRdv->getNumeroSecuriteSocial(),
             'Id_Usager' => $commandCheckRdv->getIdUsager(),
+            'heure_rendez_vous' => $commandCheckRdv->getHeureRdv(),
         ]);
         header('Location: ' . $url);
     } elseif ($commandCheckButtonClicked === "s") {
@@ -75,7 +76,7 @@ function setCommandCheckRdv($POST)
     $commandCheckRevToReturn->setPrenom($POST['prenom']);
     $commandCheckRevToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
     $commandCheckRevToReturn->setIdUsager($POST['Id_Usager']);
-    $commandCheckRevToReturn->setHeureRdv($POST['heure_rdv']);
+    $commandCheckRevToReturn->setHeureRdv($POST['heure_rendez_vous']);
 
     return $commandCheckRevToReturn;
 }

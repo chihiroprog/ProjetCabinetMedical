@@ -1,4 +1,5 @@
 .modifUsager {
+    margin-top: 25px;
     background-color: #f8f8f8;
     padding: 20px;
     border: 2px solid #3498db;
@@ -6,7 +7,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     width: 100%;
-    margin: 0 auto;
+    margin: 40px auto;
 }
 
 .modifUsager h2 {

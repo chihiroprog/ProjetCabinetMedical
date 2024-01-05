@@ -115,3 +115,12 @@ header{
     z-index: 1000;
     margin-bottom: 20px;
 }
+#FailMessageAjoutrdv{
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    z-index: 1000;
+    margin-bottom: 20px;
+}

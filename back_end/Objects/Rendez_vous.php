@@ -143,7 +143,8 @@
                 Id_Usager = :idUsager,
                 Nom_patient = :nomUsager,
                 numero_securite_social = :numSecuriteSociale,
-                Prenom_patient = :prenomUsager
+                Prenom_patient = :prenomUsager,
+                Heure_rendez_vous = :heureRdv   
                 WHERE Id_rendez_vous = :idRdv'
             );
 
@@ -155,9 +156,10 @@
                 'nomUsager' => $this->nom,
                 'numSecuriteSociale' => $this->numero_securite_social,
                 'prenomUsager' => $this->prenom,
+                'heureRdv' => $this->heure_rdv,
                 'idRdv' => $this->id_rendez_vous
             ));
-            var_dump($this->date_rdv, $this->duree_rdv, $this->medecin_choose, $this->Id_Usager, $this->nom, $this->numero_securite_social, $this->prenom, $this->id_rendez_vous);
+            var_dump($this->date_rdv, $this->duree_rdv, $this->medecin_choose, $this->Id_Usager, $this->nom, $this->numero_securite_social, $this->prenom, $this->id_rendez_vous, $this->heure_rdv);
 
             $rowCount = $req->rowCount();
             if ($rowCount > 0) {
@@ -237,6 +239,45 @@
         $remainingMinutes = $minutes % 60;
         return $hours . ' h ' . $remainingMinutes . ' min';
     }
+
+    public function CheckColisionRdv($id_medecin, $date_rdv, $heure_rdv, $duree_rdv) {
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('
+                SELECT * 
+                FROM rdv 
+                WHERE Id_Medecin = :IdMedecin 
+                AND date_rendez_vous = :date_rdv 
+                AND (
+                    (:heure_rdv BETWEEN heure_rendez_vous AND ADDTIME(heure_rendez_vous, SEC_TO_TIME(:duree_rdv * 60)))
+                    OR (ADDTIME(:heure_rdv, SEC_TO_TIME(:duree_rdv * 60)) BETWEEN heure_rendez_vous AND ADDTIME(heure_rendez_vous, SEC_TO_TIME(duree_rendez_vous * 60)))
+                )
+            ');
+    
+            $req->bindValue(':IdMedecin', $id_medecin, PDO::PARAM_INT); 
+            $req->bindValue(':date_rdv', $date_rdv);
+            $req->bindValue(':heure_rdv', $heure_rdv);
+            $req->bindValue(':duree_rdv', $duree_rdv, PDO::PARAM_INT);
+            $req->execute();
+    
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+            return false;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
     public function setNumeroSecuriteSocial($numero_securite_social){
