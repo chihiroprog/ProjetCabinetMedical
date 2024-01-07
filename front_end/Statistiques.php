@@ -37,7 +37,7 @@
             $getNbHommePlus50Ans = $statistique->getNbHommePlus50Ans();
             $getNbFemmePlus50Ans = $statistique->getNbFemmePlus50Ans();
             
-            $PrintAllNameMedecin = $statistique->PrintAllNameMedecin();
+            $PrintAllNameMedecin = $statistique->PrintAllNameMedecinAndAllHours();
 
           echo '<table>
                   <tbody>
@@ -71,20 +71,20 @@
 ?>
               <h1>Statistique Medecin</h1>
         <?php
-              echo '<table>
-              <tbody>
-                  <tr>
-                      <th scope="col">Nom & Prenom</th>
-                      <th scope="col">Nombres d\'heures réalisés</th>
-                  </tr>
-                  <tr>';
-                    foreach($PrintAllNameMedecin as $medecin){
-                        echo $medecin;
-                    }
-                  echo'</tr>
-              </tbody>
-          </table>';
-
+        if ($PrintAllNameMedecin !== null) {
+            echo '<table>
+                <tbody>
+                    <tr>
+                        <th scope="col">Nom & Prenom</th>
+                        <th scope="col">Nombres d\'heures réalisés</th>
+                    </tr>';
+            foreach ($PrintAllNameMedecin as $medecin) {
+                echo '<tr>' . $medecin . '</tr>';
+            }
+            echo '</tbody></table>';
+        } else {
+            echo 'Aucun résultat trouvé.';
+        }
         ?>
 
         </div>

@@ -49,7 +49,7 @@
         echo '<div id="confirmationMessageAjoutRdv">Rendez-vous bien ajouté</div>';
     }
     if (isset($_GET['echec']) && $_GET['echec'] == 1) {
-        echo '<div id="FailMessageAjoutrdv">Colision entre les rendez-vous, Rendez-vous pas ajouté !</div>';
+        echo '<div id="FailMessageAjoutrdv">Plage horraire non disponible</div>';
     }
     ?>
     <div class="register">

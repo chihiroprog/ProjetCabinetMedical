@@ -68,7 +68,6 @@
             <div class="ajout_usagers">
                 <form action="../back_end/Medecin/AddMedecin.php" method="post">
                     <h2>Ajouter un medecin</h2>
-                    <legend>Sexe</legend>
                     <label for="civilite"><input type="radio" name="civilite"  value="homme" required>homme</label>
                     <label for="civilite"><input type="radio" name="civilite"  value="femme" required>femme</label>
                     
