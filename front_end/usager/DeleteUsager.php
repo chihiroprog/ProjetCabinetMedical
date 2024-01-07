@@ -12,6 +12,8 @@
         $req = $_SESSION['req'];
         foreach ($req as $row) {
             echo '<link rel="stylesheet" href="../style/modifyUsager.css">';
+            echo '<link rel="stylesheet" href="../style/global.css">';
+
             echo '<div class="modifUsager">';
             echo '<form action="../../back_end/Usager/DeleteUser.php" method="POST" class="modify-form">';
             
@@ -38,6 +40,10 @@
 
         }
         session_write_close();
+        
     ?>
+    <button class="button_back">
+        <a href="../Usagers.php" style="text-decoration: none;">Retour</a>
+    </button>
 </body>
 </html>

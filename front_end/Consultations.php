@@ -54,7 +54,7 @@
     ?>
     <div class="register">
         <form action="../back_end/rendez_vous/SearchUserRdv.php" method="post">
-            <label for="numero_securite_social">numero de securité social du patient</label>
+            <label for="numero_securite_social">Numéro de securité social du patient</label>
             <input type="text" name="numero_securite_social" required>
             <input type="submit" value="Ajouter un rendez-vous">
         </form>

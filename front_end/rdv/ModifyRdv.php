@@ -80,7 +80,9 @@
         echo '</div>';
 
     ?>
-        
+    <button class="button_back">
+        <a href="../Consultations.php" style="text-decoration: none;">Retour</a>
+    </button>
 </body>
 </html>
 
