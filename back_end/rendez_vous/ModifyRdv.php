@@ -2,9 +2,19 @@
     require_once '../Objects/dbConfig.php';
     require_once '../Objects/Rendez_vous.php';
 
+    $rendezVous = new Rendez_vous();
+
     checkInputToAddRdv($_POST);
-    $commandAddRdv = setCommandAddRdv($_POST);
-    $commandAddRdv->ModifyRdv();
+    $commandModifyRdv = setCommandModifyRdv($_POST);
+    $collisions = $rendezVous->CheckColisionRdv($commandModifyRdv->getMedecinChoseForRdv(), $commandModifyRdv->getDateRdv(), $commandModifyRdv->getHeureRdv(), $commandModifyRdv->getDureeRdv());
+
+    if (!$rendezVous->CheckColisionRdv($commandModifyRdv->getMedecinChoseForRdv(), $commandModifyRdv->getDateRdv(), $commandModifyRdv->getHeureRdv(), $commandModifyRdv->getDureeRdv())) {
+        $commandModifyRdv->ModifyRdv();
+
+        header('Location: ../../front_end/Consultations.php?success=3');
+    } else {
+        header('Location: ../../front_end/Consultations.php?echec=1');
+    }
 
 
 
@@ -30,19 +40,27 @@
         if(!isset($POST['dureeRdv'])){
             exceptions_error_handler('duree_rdv null');
         }
+        if(!isset($POST['idRdv'])){
+            exceptions_error_handler('idRdv null');
+        }
+        if(!isset($POST['heureRdv'])){
+            exceptions_error_handler('heureRdv null');
+        }
     }
 
-    function setCommandAddRdv($POST){
-        $commandAddRdvToReturn = new Rendez_vous();
+    function setCommandModifyRdv($POST){
+        $commandModifyRdvToReturn = new Rendez_vous();
         
-        $commandAddRdvToReturn->setDateRdv($POST['dateRdv']);
-        $commandAddRdvToReturn->setDureeRdv($POST['dureeRdv']);
-        $commandAddRdvToReturn->setmedecinChoseForRdv($POST['idMedecin']);
-        $commandAddRdvToReturn->setNom($POST['nomUsager']);
-        $commandAddRdvToReturn->setPrenom($POST['prenomUsager']);
-        $commandAddRdvToReturn->setNumeroSecuriteSocial($POST['numSecuriteSociale']);
-        $commandAddRdvToReturn->setIdUsager($POST['idUsager']);
-        return $commandAddRdvToReturn;
+        $commandModifyRdvToReturn->setDateRdv($POST['dateRdv']);
+        $commandModifyRdvToReturn->setDureeRdv($POST['dureeRdv']);
+        $commandModifyRdvToReturn->setmedecinChoseForRdv($POST['idMedecin']);
+        $commandModifyRdvToReturn->setNom($POST['nomUsager']);
+        $commandModifyRdvToReturn->setPrenom($POST['prenomUsager']);
+        $commandModifyRdvToReturn->setNumeroSecuriteSocial($POST['numSecuriteSociale']);
+        $commandModifyRdvToReturn->setIdUsager($POST['idUsager']);
+        $commandModifyRdvToReturn->setIdRdv($POST['idRdv']);
+        $commandModifyRdvToReturn->setHeureRdv($POST['heureRdv']);
+        return $commandModifyRdvToReturn;
     }
 
 

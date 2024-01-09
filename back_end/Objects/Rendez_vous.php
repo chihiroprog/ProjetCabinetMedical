@@ -135,6 +135,16 @@
     }
     public function ModifyRdv(){
         try {
+            var_dump($this->id_rendez_vous);
+            var_dump($this->date_rdv);
+            var_dump($this->duree_rdv);
+            var_dump($this->medecin_choose);
+            var_dump($this->Id_Usager);
+            var_dump($this->nom);
+            var_dump($this->numero_securite_social);
+            var_dump($this->prenom);
+            
+
             $req = $this->dbconfig->getPDO()->prepare(
                 'UPDATE rdv SET
                 Date_rendez_vous = :dateRdv,
@@ -159,7 +169,7 @@
                 'heureRdv' => $this->heure_rdv,
                 'idRdv' => $this->id_rendez_vous
             ));
-            var_dump($this->date_rdv, $this->duree_rdv, $this->medecin_choose, $this->Id_Usager, $this->nom, $this->numero_securite_social, $this->prenom, $this->id_rendez_vous, $this->heure_rdv);
+            // var_dump($this->date_rdv, $this->duree_rdv, $this->medecin_choose, $this->Id_Usager, $this->nom, $this->numero_securite_social, $this->prenom, $this->id_rendez_vous, $this->heure_rdv);
 
             $rowCount = $req->rowCount();
             if ($rowCount > 0) {
