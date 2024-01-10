@@ -128,6 +128,7 @@
             echo '<form action="../back_end/rendez_vous/CheckRdv.php" method="post">';
             echo '<input type="hidden"readonly name="id_rendez_vous" value="' . $rdv['id_rendez_vous'] . '"><br>';
             echo '<input type="hidden"readonly  name="Id_Medecin" value="' . $rdv['Id_Medecin'] . '"><br>';
+            echo '<input type="text" name="prenom" value="' . $rdv['prenom_patient'] . '"><br>';
 
             echo 'Nom & prénom du patient : <input type="text"readonly name="nom" value="' . $rdv['nom_patient'] .' '.  $rdv['prenom_patient'] .'"><br>';
             echo 'Durée rendez vous : <input type="text"readonly  name="duree" value="' . $getHoursMinutes . '"><br>';
