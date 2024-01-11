@@ -22,6 +22,13 @@
                 }, 5000);
                 </script>';
     }
+    if (isset($_GET['success']) && $_GET['success'] == 3) {
+        echo '<script>
+                setTimeout(function() {
+                    document.getElementById("confirmationMessage").style.display = "none";
+                }, 5000);
+                </script>';
+    }
     if (isset($_GET['echec']) && $_GET['echec'] == 1) {
         echo '<script>
                 setTimeout(function() {
@@ -67,7 +74,11 @@
             $usager = new Usager();
             $printAllMedecin = $usager->PrintAllMedecin();
 
-            echo'<select name="medecin_selectionner">' . $printAllMedecin . '</select>';
+            echo '<select name="medecin_selectionner">';
+            echo '<option value="" selected disabled>Sélectionnez un médecin</option>'; // Option par défaut
+            echo $printAllMedecin;
+            echo '</select>';
+            
         ?>
         <input type="submit" name="Rechercher"value="Rechercher">
         <input type="submit" name="Reinitialiser" value="Reinitialiser">
@@ -76,6 +87,9 @@
     <?php
         if (isset($_GET['success']) && $_GET['success'] == 1) {
             echo '<div id="confirmationMessage">Rendez-vous bien supprimer</div>';
+        }
+        if (isset($_GET['success']) && $_GET['success'] == 3) {
+            echo '<div id="confirmationMessage">Rendez-vous bien Modifié</div>';
         }
     ?>
     
@@ -114,9 +128,9 @@
             echo '<form action="../back_end/rendez_vous/CheckRdv.php" method="post">';
             echo '<input type="hidden"readonly name="id_rendez_vous" value="' . $rdv['id_rendez_vous'] . '"><br>';
             echo '<input type="hidden"readonly  name="Id_Medecin" value="' . $rdv['Id_Medecin'] . '"><br>';
+            echo '<input type="text" name="prenom" value="' . $rdv['prenom_patient'] . '"><br>';
 
-            echo 'Nom du patient : <input type="text"readonly name="nom" value="' . $rdv['nom_patient'] . '"><br>';
-            echo 'Prenom du patient : <input type="text"readonly name="prenom" value="' . $rdv['prenom_patient'] . '"><br>';
+            echo 'Nom & prénom du patient : <input type="text"readonly name="nom" value="' . $rdv['nom_patient'] .' '.  $rdv['prenom_patient'] .'"><br>';
             echo 'Durée rendez vous : <input type="text"readonly  name="duree" value="' . $getHoursMinutes . '"><br>';
 
 

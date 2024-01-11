@@ -98,9 +98,7 @@ function SearchMedecin($context){
                 exit;
             }
     
-        } catch (Exception $pe) {
-            echo 'ERREUR : ' . $pe->getMessage();
-        }
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
     public function getMedecinIDByNameAndFristName($nom,$prenom){
         try {
