@@ -135,27 +135,6 @@
     }
     public function ModifyRdv(){
         try {
-            // Ajoutez ces var_dump pour déboguer
-            var_dump($this->id_rendez_vous);
-            var_dump($this->date_rdv);
-            var_dump($this->duree_rdv);
-            var_dump($this->medecin_choose);
-            var_dump($this->Id_Usager);
-            var_dump($this->nom);
-            var_dump($this->numero_securite_social);
-            var_dump($this->prenom);
-            var_dump($this->heure_rdv);
-    
-            var_dump($this->id_rendez_vous);
-            var_dump($this->date_rdv);
-            var_dump($this->duree_rdv);
-            var_dump($this->medecin_choose);
-            var_dump($this->Id_Usager);
-            var_dump($this->nom);
-            var_dump($this->numero_securite_social);
-            var_dump($this->prenom);
-            
-
             $req = $this->dbconfig->getPDO()->prepare(
                 'UPDATE rdv SET
                 Date_rendez_vous = :dateRdv,
@@ -180,19 +159,7 @@
                 'heureRdv' => $this->heure_rdv,
                 'idRdv' => $this->id_rendez_vous
             ));
-    
-            // Ajoutez ce var_dump pour vérifier le nombre de lignes affectées
-            var_dump($req->rowCount());
-    
-            if ($req->rowCount() > 0) {
-                echo "La modification a réussi. Nombre de lignes modifiées : " . $req->rowCount();
-            } else {
-                echo "Aucune modification effectuée.";
-            }
-    
-        } catch(Exception $pe) {
-            echo 'ERREUR : ' . $pe->getMessage();
-        }
+        } catch(Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
     
     public function SearchRdvByMedecin($medecin_selectionner){

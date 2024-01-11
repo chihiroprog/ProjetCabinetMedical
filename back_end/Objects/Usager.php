@@ -56,6 +56,29 @@ class Usager
         } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
     //+++++++++++++++++++++++++++++++++++++++++++++++++++RECHERCHE USER+++++++++++++++++++++++++++++++++++++++++++++++
+    // public function SearchUser($context)
+    // {
+    //     try {
+    //         $req = $this->dbconfig->getPDO()->prepare('SELECT Id_Usager,civilite, nom, prenom, adresse, date_naissance, lieu_naissance, numero_securite_social
+    //         FROM usager WHERE nom = :nom AND prenom = :prenom');
+
+    //         $req->execute(array(
+    //             ':nom' => $this->nom,
+    //             ':prenom' => $this->prenom,
+    //         ));
+    //         session_start();
+
+    //         if($context === 'Modify'){
+    //             $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
+    //             header('Location: ../../front_end/usager/ModifyUsager.php');
+    //         }elseif($context === 'Delete'){
+    //             $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
+    //             header('Location: ../../front_end/usager/DeleteUsager.php');
+    //         }
+    //         session_write_close();
+    //     } 
+    //     catch (Exception $pe) { echo 'ERREUR : ' . $pe->getMessage(); }
+    // }
     public function SearchUser($context)
     {
         try {
@@ -66,20 +89,17 @@ class Usager
                 ':nom' => $this->nom,
                 ':prenom' => $this->prenom,
             ));
-            session_start();
+            $result = $req->fetch(PDO::FETCH_ASSOC);
 
             if($context === 'Modify'){
-                $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
-                header('Location: ../../front_end/usager/ModifyUsager.php');
+                $url = '../../front_end/usager/' . $context . 'Usager.php?' . http_build_query($result);
+                header('Location: ' . $url);
             }elseif($context === 'Delete'){
-                $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
                 header('Location: ../../front_end/usager/DeleteUsager.php');
             }
-            session_write_close();
         } 
         catch (Exception $pe) { echo 'ERREUR : ' . $pe->getMessage(); }
     }
-
     //+++++++++++++++++++++++++++++++++++++++++++++++++++DELETE USER+++++++++++++++++++++++++++++++++++++++++++++++
 
     public function DeleteUser(){
