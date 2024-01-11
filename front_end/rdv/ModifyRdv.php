@@ -51,7 +51,7 @@
                 echo '<input type="hidden" id="idMedecin" name="idMedecin" value="' . $rendezVous->getMedecinChoseForRdv() . '"><br>';
 
                 echo '<label for="idMedecin">Nom & prénom du médecin :</label>';
-                echo '<input type="text" id="idMedecin" name="medecin" value="' . $getInfoMedecin . '"><br>';
+                echo '<input type="text"readonly id="idMedecin" name="medecin" value="' . $getInfoMedecin . '"><br>';
                 
                 echo '<label for="dateRdv">Date du rendez-vous:</label>';
                 echo '<input type="date" id="dateRdv" name="dateRdv" value="' . $rendezVous->getDateRdv() . '"><br>';
@@ -63,13 +63,12 @@
                 echo '<input type="time" id="heureRdv" name="heureRdv" value="' . $rendezVous->getHeureRdv() . '"><br>';
                 
                 echo '<label for="nomUsager">Nom de l\'usager:</label>';
-                echo '<input type="text" id="nomUsager" name="nomUsager" value="' . $rendezVous->getNom() . '"><br>';
+                echo '<input type="text"readonly id="nomUsager" name="nomUsager" value="' . $rendezVous->getNom() . '"><br>';
                 
                 echo '<label for="prenomUsager">Prénom de l\'usager:</label>';
-                echo '<input type="text" id="prenomUsager" name="prenomUsager" value="' . $rendezVous->getPrenom() . '"><br>';
+                echo '<input type="text" readonly id="prenomUsager" name="prenomUsager" value="' . $rendezVous->getPrenom() . '"><br>';
                 
-                echo '<label for="numSecuriteSociale">Numéro de sécurité sociale de l\'usager:</label>';
-                echo '<input type="text" id="numSecuriteSociale" name="numSecuriteSociale" value="' . $rendezVous->getNumeroSecuriteSocial() . '"><br>';
+                echo '<input type="hidden" id="numSecuriteSociale" name="numSecuriteSociale" value="' . $rendezVous->getNumeroSecuriteSocial() . '"><br>';
                 
                 echo '<input type="hidden" id="idUsager" name="idUsager" value="' . $rendezVous->getIdUsager() . '"><br>';
 

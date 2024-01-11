@@ -135,6 +135,17 @@
     }
     public function ModifyRdv(){
         try {
+            // Ajoutez ces var_dump pour déboguer
+            var_dump($this->id_rendez_vous);
+            var_dump($this->date_rdv);
+            var_dump($this->duree_rdv);
+            var_dump($this->medecin_choose);
+            var_dump($this->Id_Usager);
+            var_dump($this->nom);
+            var_dump($this->numero_securite_social);
+            var_dump($this->prenom);
+            var_dump($this->heure_rdv);
+    
             $req = $this->dbconfig->getPDO()->prepare(
                 'UPDATE rdv SET
                 Date_rendez_vous = :dateRdv,
@@ -147,7 +158,7 @@
                 Heure_rendez_vous = :heureRdv   
                 WHERE Id_rendez_vous = :idRdv'
             );
-
+    
             $req->execute(array(
                 'dateRdv' => $this->date_rdv,
                 'dureeRdv' => $this->duree_rdv,
@@ -159,18 +170,21 @@
                 'heureRdv' => $this->heure_rdv,
                 'idRdv' => $this->id_rendez_vous
             ));
-            var_dump($this->date_rdv, $this->duree_rdv, $this->medecin_choose, $this->Id_Usager, $this->nom, $this->numero_securite_social, $this->prenom, $this->id_rendez_vous, $this->heure_rdv);
-
-            $rowCount = $req->rowCount();
-            if ($rowCount > 0) {
-                echo "La modification a réussi. Nombre de lignes modifiées : $rowCount";
+    
+            // Ajoutez ce var_dump pour vérifier le nombre de lignes affectées
+            var_dump($req->rowCount());
+    
+            if ($req->rowCount() > 0) {
+                echo "La modification a réussi. Nombre de lignes modifiées : " . $req->rowCount();
             } else {
                 echo "Aucune modification effectuée.";
             }
-
     
-        } catch(Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
+        } catch(Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
     }
+    
     public function SearchRdvByMedecin($medecin_selectionner){
         try {
             $req = $this->dbconfig->getPDO()->prepare('SELECT id_rendez_vous, nom_patient, prenom_patient, numero_securite_social, duree_rendez_vous, date_rendez_vous, Id_Medecin, Id_Usager ,heure_rendez_vous
@@ -267,19 +281,7 @@
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-    
     public function setNumeroSecuriteSocial($numero_securite_social){
         $this->numero_securite_social = $numero_securite_social;
     }
