@@ -7,11 +7,10 @@
     checkInputToSearch($_POST);
     $commandSearch = setCommandSearch($_POST);
 
-    $_SESSION['commandSearchData'] = [
-        'numeroSecuriteSocial' => $commandSearch->getNumeroSecuriteSocial(),
-    ];
-
-    header('Location: ../../front_end/rdv/AddRdv.php');
+    $url = '../../front_end/rdv/AddRdv.php?' . http_build_query([
+        'numero_securite_social' =>$commandSearch->getNumeroSecuriteSocial(),
+    ]);
+    header('Location: ' . $url);
     session_write_close();
 
 

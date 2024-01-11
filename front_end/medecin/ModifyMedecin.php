@@ -7,34 +7,43 @@
 </head>
 <body>
     <?php
-        session_start();
-        require_once '../../back_end/Objects/Medecin.php';
-        $req = $_SESSION['req'];
-        foreach ($req as $row) {
-            echo '<link rel="stylesheet" href="../style/modifyMedecin.css">';
-            echo '<link rel="stylesheet" href="../style/global.css">';
 
-            echo '<div class="modifUsager">';
-            echo '<form action="../../back_end/Medecin/ModifyMedecin.php" method="POST" class="modify-form">';
-            
-            echo '<input name="Id_Medecin" type="hidden" value="' . $row['Id_Medecin'] . '">';
-            
-            echo '<label class="radio-label" for="civilite_homme"><input type="radio" name="civilite" value="homme" required';
-            echo ($row['civilite'] == 'homme') ? ' checked' : '';
-            echo '>homme</label>';
-            
-            echo '<label class="radio-label" for="civilite_femme"><input type="radio" name="civilite" value="femme" required';
-            echo ($row['civilite'] == 'femme') ? ' checked' : '';
-            echo '>femme</label><br>';
-            
-            echo 'Nom: <input type="text"  name="nom" value="' . $row['nom'] . '" ><br>';
-            echo 'Prénom: <input type="text" name="prenom" value="' . $row['prenom'] . '"><br>';
-            
-            echo '<input type="submit" value="Modifier">';
-            echo '</form>';
-            echo '</div>';
+        require_once ("../../back_end/Objects/Medecin.php");
+        $Id_Medecin = $_GET['Id_Medecin'];
+        $nom = $_GET['nom'];
+        $prenom = $_GET['prenom'];
+        $civilite = $_GET['civilite'];
 
-        }
+        $medecin = new Medecin();
+
+        $medecin->setNom($nom);
+        $medecin->setPrenom($prenom);
+        $medecin->setCivilite($civilite);
+        $medecin->setId($Id_Medecin);
+
+        echo '<link rel="stylesheet" href="../style/modifyMedecin.css">';
+        echo '<link rel="stylesheet" href="../style/global.css">';
+
+        echo '<div class="modifUsager">';
+        echo '<form action="../../back_end/Medecin/ModifyMedecin.php" method="POST" class="modify-form">';
+        
+        echo '<input name="Id_Medecin" type="hidden" value="' . $medecin->getId() . '">';
+        
+        echo '<label class="radio-label" for="civilite_homme"><input type="radio" name="civilite" value="homme" required';
+        echo ($medecin->getCivilite() == 'homme') ? ' checked' : '';
+        echo '>homme</label>';
+        
+        echo '<label class="radio-label" for="civilite_femme"><input type="radio" name="civilite" value="femme" required';
+        echo ($medecin->getCivilite() == 'femme') ? ' checked' : '';
+        echo '>femme</label><br>';
+        
+        echo 'Nom: <input type="text"  name="nom" value="' . $medecin->getNom() . '" ><br>';
+        echo 'Prénom: <input type="text" name="prenom" value="' . $medecin->getPrenom() . '"><br>';
+        
+        echo '<input type="submit" value="Modifier">';
+        echo '</form>';
+        echo '</div>';
+
     ?>
     <button class="button_back">
         <a href="../Médecins.php" style="text-decoration: none;">Retour</a>

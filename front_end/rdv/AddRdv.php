@@ -7,18 +7,16 @@
 </head>
 <body>
 <?php
-    session_start();
     require_once '../../back_end/Objects/dbConfig.php';
     require_once '../../back_end/Objects/Rendez_vous.php';
     require_once '../../back_end/Objects/Usager.php';
 
-    if(isset($_SESSION['commandSearchData'])) {
-        $commandSearchData = $_SESSION['commandSearchData'];
-
+    if(isset($_GET['numero_securite_social'])) {
+        $numero_securite_social = $_GET['numero_securite_social'];
         $commandSearch = new Rendez_vous();
         $usager = new Usager();
         
-        $commandSearch->setNumeroSecuriteSocial($commandSearchData['numeroSecuriteSocial']);
+        $commandSearch->setNumeroSecuriteSocial($numero_securite_social);
         $commandSearch->SearchUserForRDV();
         $listeMedecins = $commandSearch->getNomPrenomMedecin();
         
@@ -47,7 +45,6 @@
     } else {
         echo 'Les données nécessaires ne sont pas disponibles.';
     }
-    session_write_close();
 ?>
 </body>
 </html>

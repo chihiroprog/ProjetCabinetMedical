@@ -61,24 +61,30 @@ class Usager
         try {
             $req = $this->dbconfig->getPDO()->prepare('SELECT Id_Usager,civilite, nom, prenom, adresse, date_naissance, lieu_naissance, numero_securite_social
             FROM usager WHERE nom = :nom AND prenom = :prenom');
-
+    
             $req->execute(array(
                 ':nom' => $this->nom,
                 ':prenom' => $this->prenom,
             ));
-            session_start();
-
-            if($context === 'Modify'){
-                $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
-                header('Location: ../../front_end/usager/ModifyUsager.php');
-            }elseif($context === 'Delete'){
-                $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
-                header('Location: ../../front_end/usager/DeleteUsager.php');
+    
+            $result = $req->fetch(PDO::FETCH_ASSOC);
+    
+            if ($result !== false) {
+                if ($context === 'Modify') {
+                    $url = '../../front_end/usager/ModifyUsager.php?' . http_build_query($result);
+                    header('Location: ' . $url);
+                    exit();
+                } elseif ($context === 'Delete') {
+                    $url = '../../front_end/usager/DeleteUsager.php?' . http_build_query($result);
+                    header('Location: ' . $url);
+                    exit();
+                }
+            } else {
+                echo 'Aucun utilisateur trouvé.';
             }
-            session_write_close();
-        } 
-        catch (Exception $pe) { echo 'ERREUR : ' . $pe->getMessage(); }
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
+    
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++DELETE USER+++++++++++++++++++++++++++++++++++++++++++++++
 
