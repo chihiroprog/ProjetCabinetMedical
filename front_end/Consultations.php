@@ -123,7 +123,6 @@
         foreach ($allRdv as $rdv) {
             $getInfoMedecin = $medecin->getNameAndFirstNameByID($rdv['Id_Medecin']);
             $getHoursMinutes = $statistique->convertMinutesToHoursMinutes($rdv['duree_rendez_vous']);
-            // var_dump($getHoursMinutes);
             echo '<link rel="stylesheet" href="style/consultations.css">';
             echo '<div class="allRdv">';
             echo '<form action="../back_end/rendez_vous/CheckRdv.php" method="post">';

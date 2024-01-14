@@ -271,15 +271,9 @@
     function convertDureeIntoHour($pDuree){
         return gmdate('H:i:s', $pDuree * 60);
     }
-    //$date format is YYYY:MM:DD - $time format is HH:MM - $duration format is minutes
     function convertToTimestamp($date, $time, $duration) {
-        // Combinez la date et l'heure
         $dateTime = $date . ' ' . $time;
-    
-        // Convertissez en timestamp
         $timestamp = strtotime($dateTime);
-    
-        // Ajoutez la durée (convertie en secondes)
         $timestamp += $duration * 60;
     
         return $timestamp;
