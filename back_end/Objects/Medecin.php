@@ -35,19 +35,22 @@ function SearchMedecin($context){
             'nom' => $this->nom,
             'prenom' => $this->prenom,
         ));
-        session_start();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
 
-        if($context === 'Modify'){
-            $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
-            header('Location: ../../front_end/medecin/ModifyMedecin.php');
-        } elseif($context === 'Delete'){
-            $_SESSION['req'] = $req->fetchAll(PDO::FETCH_ASSOC);
-            header('Location: ../../front_end/medecin/DeleteMedecin.php');
+        if ($result !== false) {
+            if ($context === 'Modify') {
+                $url = '../../front_end/medecin/ModifyMedecin.php?' . http_build_query($result);
+                header('Location: ' . $url);
+                exit();
+            } elseif ($context === 'Delete') {
+                $url = '../../front_end/medecin/DeleteMedecin.php?' . http_build_query($result);
+                header('Location: ' . $url);
+                exit();
+            }
+        } else {
+            echo 'Aucun utilisateur trouvé.';
         }
-        session_write_close();
-    } catch(Exception $pe){
-        echo 'ERREUR : ' . $pe->getMessage();
-    }
+    } catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++DELETE MEDECIN +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -152,6 +155,19 @@ function SearchMedecin($context){
     }
     public function setId($Id_Medecin){
         $this->Id_Medecin = $Id_Medecin;
+    }
+
+    public function getNom(){
+        return $this->nom;
+    }
+    public function getPrenom(){
+        return $this->prenom;
+    }
+    public function getCivilite(){
+        return $this->civilite;
+    }
+    public function getId(){
+        return $this->Id_Medecin;
     }
 }
 ?>

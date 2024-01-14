@@ -72,6 +72,7 @@
                 echo '<input type="hidden" id="numSecuriteSociale" name="numSecuriteSociale" value="' . $rendezVous->getNumeroSecuriteSocial() . '"><br>';
                 
                 echo '<input type="hidden" id="idUsager" name="idUsager" value="' . $rendezVous->getIdUsager() . '"><br>';
+                echo '<input type="hidden" id="prenomUsager" name="prenomUsager" value="' . $rendezVous->getPrenom() . '"><br>';
 
 
             
