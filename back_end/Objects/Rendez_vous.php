@@ -225,38 +225,65 @@
             echo 'ERREUR : ' . $pe->getMessage();
         }
     }
+
     function convertMinutesToHoursMinutes($minutes) {
         $hours = floor($minutes / 60);
         $remainingMinutes = $minutes % 60;
         return $hours . ' h ' . $remainingMinutes . ' min';
     }
+    
 
-    public function CheckColisionRdv($id_medecin, $date_rdv, $heure_rdv, $duree_rdv) {
+    public function CheckColisionRdv($id_medecin, $id_rendez_vous_to_ignore, $date_rdv, $heure_rdv, $duree_rdv) {
         try {
             $req = $this->dbconfig->getPDO()->prepare('
                 SELECT * 
                 FROM rdv 
                 WHERE Id_Medecin = :IdMedecin 
                 AND date_rendez_vous = :date_rdv 
-                AND (
-                    (:heure_rdv BETWEEN heure_rendez_vous AND ADDTIME(heure_rendez_vous, SEC_TO_TIME(:duree_rdv * 60)))
-                    OR (ADDTIME(:heure_rdv, SEC_TO_TIME(:duree_rdv * 60)) BETWEEN heure_rendez_vous AND ADDTIME(heure_rendez_vous, SEC_TO_TIME(duree_rendez_vous * 60)))
-                )
+                and (:id_rendez_vous IS NULL OR id_rendez_vous != :id_rendez_vous)
             ');
     
             $req->bindValue(':IdMedecin', $id_medecin, PDO::PARAM_INT); 
             $req->bindValue(':date_rdv', $date_rdv);
-            $req->bindValue(':heure_rdv', $heure_rdv);
-            $req->bindValue(':duree_rdv', $duree_rdv, PDO::PARAM_INT);
+            $req->bindValue(':id_rendez_vous', $id_rendez_vous_to_ignore, PDO::PARAM_INT);
             $req->execute();
-    
-            return $req->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $pe) {
-            echo 'ERREUR : ' . $pe->getMessage();
+            
+
+            $allrdv = $req->fetchAll(PDO::FETCH_ASSOC);
+            if(sizeof($allrdv) == 0 ){
+                return false;
+            }
+
+            $start_rdv_program_timestamp = $this->convertToTimestamp($date_rdv, $heure_rdv,0);
+            $end_rdv_program_timestamp = $this->convertToTimestamp($date_rdv, $heure_rdv,$duree_rdv); 
+            
+            foreach($allrdv as $rdv){
+                $debutRdv = $this->convertToTimestamp($rdv["Date_rendez_vous"], $rdv["Heure_rendez_vous"], '0');
+                $finRdv =  $this->convertToTimestamp($rdv["Date_rendez_vous"], $rdv["Heure_rendez_vous"], $rdv['Duree_rendez_vous']);
+
+                if($start_rdv_program_timestamp < $finRdv && $end_rdv_program_timestamp > $debutRdv){
+                    return  true;
+                }
+            }   
             return false;
-        }
+        } catch (Exception $pe) {echo 'ERREUR : ' . $pe->getMessage();}
     }
+    function convertDureeIntoHour($pDuree){
+        return gmdate('H:i:s', $pDuree * 60);
+    }
+    //$date format is YYYY:MM:DD - $time format is HH:MM - $duration format is minutes
+    function convertToTimestamp($date, $time, $duration) {
+        // Combinez la date et l'heure
+        $dateTime = $date . ' ' . $time;
     
+        // Convertissez en timestamp
+        $timestamp = strtotime($dateTime);
+    
+        // Ajoutez la durée (convertie en secondes)
+        $timestamp += $duration * 60;
+    
+        return $timestamp;
+    }   
     
 
     public function setNumeroSecuriteSocial($numero_securite_social){

@@ -7,9 +7,9 @@
         checkInputToAddRdv($_POST);
         $commandAddRdv = setCommandAddRdv($_POST);
         
-        $collisions = $rendezVous->CheckColisionRdv($commandAddRdv->getMedecinChoseForRdv(), $commandAddRdv->getDateRdv(), $commandAddRdv->getHeureRdv(), $commandAddRdv->getDureeRdv());
+        $collisions = $rendezVous->CheckColisionRdv($commandAddRdv->getMedecinChoseForRdv(), null, $commandAddRdv->getDateRdv(), $commandAddRdv->getHeureRdv(), $commandAddRdv->getDureeRdv());
         
-        if (!$rendezVous->CheckColisionRdv($commandAddRdv->getMedecinChoseForRdv(), $commandAddRdv->getDateRdv(), $commandAddRdv->getHeureRdv(), $commandAddRdv->getDureeRdv())) {
+        if (!$collisions) {
             $commandAddRdv->AddRdv();
             header('Location: ../../front_end/Consultations.php?success=2');
         } else {
@@ -58,7 +58,6 @@
             $commandAddRdvToReturn->setIdUsager($POST['user_id']);
             return $commandAddRdvToReturn;
         }
-
 
 
         function exceptions_error_handler($message) {

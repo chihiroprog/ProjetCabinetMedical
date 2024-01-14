@@ -123,15 +123,19 @@
         foreach ($allRdv as $rdv) {
             $getInfoMedecin = $medecin->getNameAndFirstNameByID($rdv['Id_Medecin']);
             $getHoursMinutes = $statistique->convertMinutesToHoursMinutes($rdv['duree_rendez_vous']);
+            // var_dump($getHoursMinutes);
             echo '<link rel="stylesheet" href="style/consultations.css">';
             echo '<div class="allRdv">';
             echo '<form action="../back_end/rendez_vous/CheckRdv.php" method="post">';
             echo '<input type="hidden"readonly name="id_rendez_vous" value="' . $rdv['id_rendez_vous'] . '"><br>';
-            echo '<input type="hidden"readonly  name="Id_Medecin" value="' . $rdv['Id_Medecin'] . '"><br>';
-            echo '<input type="text" name="prenom" value="' . $rdv['prenom_patient'] . '"><br>';
+            echo '<input type="hidden"readonly  name="duree" value="' . $rdv['duree_rendez_vous'] . '"><br>';
 
-            echo 'Nom & prénom du patient : <input type="text"readonly name="nom" value="' . $rdv['nom_patient'] .' '.  $rdv['prenom_patient'] .'"><br>';
-            echo 'Durée rendez vous : <input type="text"readonly  name="duree" value="' . $getHoursMinutes . '"><br>';
+            echo '<input type="hidden" readonly  name="Id_Medecin" value="' . $rdv['Id_Medecin'] . '"><br>';
+            echo '<input type="hidden" name="prenomUsager" value="' . $rdv['prenom_patient'] . '"><br>';
+            echo '<input type="hidden" name="nom" value="' . $rdv['nom_patient'] . '"><br>';
+
+            echo 'Nom & prénom du patient : <input type="text"readonly name="nomprenom" value="' . $rdv['nom_patient'] .' '.  $rdv['prenom_patient'] .'"><br>';
+            echo 'Durée rendez vous : <input type="text"readonly  name="dureevisu" value="' . $getHoursMinutes . '"><br>';
 
 
             echo 'Date rendez vous : <input type="text"readonly  name="date_rendez_vous" value="' . $rdv['date_rendez_vous'] . '"><br>';

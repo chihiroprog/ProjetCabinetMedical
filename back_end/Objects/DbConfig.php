@@ -6,7 +6,7 @@ class DbConfig
     private function __construct()
     {
         try {
-            $this->linkpdo = new PDO('mysql:host=localhost;dbname=projet', 'User', '$iutinfo', [
+            $this->linkpdo = new PDO('mysql:host=localhost;dbname=projet', 'Enzo', '$iutinfo', [
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]);

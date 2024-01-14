@@ -28,6 +28,7 @@
         $Id_Usager = $_GET['Id_Usager'];
         $heure_rendez_vous = $_GET['heure_rendez_vous'];
 
+        
         $rendezVous = new Rendez_vous();
         $rendezVous->setNom($nom);
         $rendezVous->setIdRdv($id_rendez_vous);
@@ -62,18 +63,28 @@
                 echo '<label for="HeureRdv">Heure du rendez-vous:</label>';
                 echo '<input type="time" id="heureRdv" name="heureRdv" value="' . $rendezVous->getHeureRdv() . '"><br>';
                 
-                echo '<label for="nomUsager">Nom & prénom du patient :</label>';
+                echo '<label for="nomUsager">Nom du patient:</label>';
                 echo '<input type="text" readonly id="nomUsager" name="nomUsager" value="' . $rendezVous->getNom() . '"><br>';
-                
+
+                echo '<label for="nomUsager">Prénom du patient:</label>';
+                echo '<input type="text" readonly id="prenomUsager" name="prenomUsager" value="' . $rendezVous->getPrenom() . '"><br>';
+
                 echo '<input type="hidden" id="numSecuriteSociale" name="numSecuriteSociale" value="' . $rendezVous->getNumeroSecuriteSocial() . '"><br>';
                 
                 echo '<input type="hidden" id="idUsager" name="idUsager" value="' . $rendezVous->getIdUsager() . '"><br>';
 
 
+            
+
                 echo '<input type="submit" value="Modifier">';
                 echo '</form>';
             echo '</div>';
         echo '</div>';
+
+
+        function convertDureeIntoHour($pDuree){
+            return gmdate('H:i:s', $pDuree * 60);
+        }
 
     ?>
     <button class="button_back">

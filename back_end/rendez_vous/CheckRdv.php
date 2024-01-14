@@ -40,7 +40,7 @@ function checkInputToCheckRdv($POST)
     if (!isset($POST['nom'])) {
         exceptions_error_handler('nom null');
     }
-    if (!isset($POST['prenom'])) {
+    if (!isset($POST['prenomUsager'])) {
         exceptions_error_handler('prenom null');
     }
     if (!isset($POST['numero_securite_social'])) {
@@ -73,7 +73,7 @@ function setCommandCheckRdv($POST)
     $commandCheckRevToReturn->setDureeRdv($POST['duree_rendez_vous']);
     $commandCheckRevToReturn->setmedecinChoseForRdv($POST['Id_Medecin']);
     $commandCheckRevToReturn->setNom($POST['nom']);
-    $commandCheckRevToReturn->setPrenom($POST['prenom']);
+    $commandCheckRevToReturn->setPrenom($POST['prenomUsager']);
     $commandCheckRevToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
     $commandCheckRevToReturn->setIdUsager($POST['Id_Usager']);
     $commandCheckRevToReturn->setHeureRdv($POST['heure_rendez_vous']);
