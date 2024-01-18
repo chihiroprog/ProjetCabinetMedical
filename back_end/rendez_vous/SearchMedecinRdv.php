@@ -2,7 +2,6 @@
 require_once '../Objects/dbConfig.php';
 require_once '../Objects/Rendez_vous.php';
 
-var_dump($_POST);
 checkInputToSearchRdv($_POST);
 $commandSearchRdv = setCommandSearchRdv($_POST);
 $commandSearchRdv->SearchRdvByMedecin($commandSearchRdv->getMedecinChoseForRdv());

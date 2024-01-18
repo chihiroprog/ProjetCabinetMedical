@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-    require_once '../../back_end/Objects/dbConfig.php';
+    require_once '../../back_end/Objects/DbConfig.php';
     require_once '../../back_end/Objects/Rendez_vous.php';
     require_once '../../back_end/Objects/Usager.php';
 

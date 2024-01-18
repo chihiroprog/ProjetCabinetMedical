@@ -1,6 +1,6 @@
 <?php
     require_once '../Objects/Medecin.php';
-    require_once '../Objects/dbConfig.php';
+    require_once '../Objects/DbConfig.php';
     CheckInputModifyMedecin($_POST);
     $commandToModifyMedecin = setModifyMedecinCommand($_POST);
     $commandToModifyMedecin->ModifyMedecin();

@@ -1,5 +1,5 @@
 <?php
-require_once 'dbConfig.php';
+require_once 'DbConfig.php';
 class Usager
 {
     private DbConfig $dbconfig;

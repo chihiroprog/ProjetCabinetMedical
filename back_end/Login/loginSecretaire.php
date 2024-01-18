@@ -1,13 +1,12 @@
 <?php
 
-require_once '../Objects/dbConfig.php';
+require_once '../Objects/DbConfig.php';
 require_once '../Objects/Secretaire.php';
 require_once 'login.php';
 
     checkInputToLoginSecretaire($_POST);
 
     $commandToLoginSecretaire = setCommandToLoginSecretaire($_POST);
-    var_dump($commandToLoginSecretaire);
     $commandToLoginSecretaire->CheckSecretaireExist();
 
     function checkInputToLoginSecretaire($POST){

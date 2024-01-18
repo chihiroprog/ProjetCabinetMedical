@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once '../Objects/dbConfig.php';
+    require_once '../Objects/DbConfig.php';
     require_once '../Objects/Rendez_vous.php';
 
     checkInputToSearch($_POST);

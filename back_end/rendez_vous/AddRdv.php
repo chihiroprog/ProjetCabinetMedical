@@ -1,5 +1,5 @@
     <?php
-        require_once '../Objects/dbConfig.php';
+        require_once '../Objects/DbConfig.php';
         require_once '../Objects/Rendez_vous.php';
 
         $rendezVous = new Rendez_vous();

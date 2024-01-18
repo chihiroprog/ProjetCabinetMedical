@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Objects/dbConfig.php';
+require_once '../Objects/DbConfig.php';
 require_once '../Objects/Medecin.php';
 require_once 'login.php';
 
