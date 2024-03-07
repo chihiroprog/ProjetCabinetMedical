@@ -5,13 +5,18 @@
     require_once '../Objects/Rendez_vous.php';
 
     checkInputToSearch($_POST);
-    $commandSearch = setCommandSearch($_POST);
+    $usagerExist = checkUserExist($_POST['numero_securite_social']);
+    if(!$usagerExist){
+        header('Location: ../../front_end/Consultations.php?echec=2');
+    }else{
+        $url = '../../front_end/rdv/AddRdv.php?' . http_build_query([
+            'numero_securite_social' => $_POST['numero_securite_social'],
+    
+        ]);
+        header('Location: ' . $url);
+        session_write_close();
+    }
 
-    $url = '../../front_end/rdv/AddRdv.php?' . http_build_query([
-        'numero_securite_social' =>$commandSearch->getNumeroSecuriteSocial(),
-    ]);
-    header('Location: ' . $url);
-    session_write_close();
 
 
     function checkInputToSearch($POST){
@@ -19,12 +24,17 @@
             exceptions_error_handler('numero_securite_social null');
         }
     }
-
-    function setCommandSearch($POST){
-        $commandAddUserToReturn = new Rendez_vous();
-        $commandAddUserToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
-        return $commandAddUserToReturn;
+    function checkUserExist($numero_securite_social){
+        $usager = new Usager();
+        $exist = $usager->CheckUsagerExistByNumeroSecuriteSocial($numero_securite_social);
+        if($exist){
+            return true;
+        }else{
+            return false;
+        }
     }
+
+
 
     function exceptions_error_handler($message) {
         throw new ErrorException($message);

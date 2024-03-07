@@ -16,8 +16,7 @@
         $commandSearch = new Rendez_vous();
         $usager = new Usager();
         
-        $commandSearch->setNumeroSecuriteSocial($numero_securite_social);
-        $commandSearch->SearchUserForRDV();
+        $commandSearch->SearchUserForRDV($numero_securite_social);
         $listeMedecins = $commandSearch->getNomPrenomMedecin();
         
         $listeMedecinSorted = $commandSearch->sortMedecinReferentFirst($listeMedecins);
@@ -28,7 +27,7 @@
         echo '<input type="hidden" name="user_id" value="' . $commandSearch->usager->getIdUsager() . '">';
         echo 'Nom: <input type="text" readonly name="nom" value="' . $commandSearch->usager->getNom() . '" ><br>';
         echo 'Prénom: <input type="text" readonly name="prenom" value="' . $commandSearch->usager->getPrenom() . '"><br>';
-        echo 'Numéro de sécurité sociale: <input type="text" readonly name="numero_securite_social" value="' . $commandSearch->getNumeroSecuriteSocial() . '"><br>';
+        echo 'Numéro de sécurité sociale: <input type="text" readonly name="numero_securite_social" value="' . $numero_securite_social . '"><br>';
         echo 'Médecin Référent: <select name="Id_Medecin" >';
         foreach ($listeMedecinSorted as $medecin) {
             echo '<option value="' . $medecin['Id_Medecin'] . '">' . $medecin['nom'] . ' ' . $medecin['prenom'] . '</option>';

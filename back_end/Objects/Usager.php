@@ -175,6 +175,37 @@ class Usager
         }
     }
 
+
+
+    public function getInformationByID($Id_Usager){
+        try {
+            $req = $this->dbconfig->getPDO()->prepare('SELECT nom, prenom , numero_securite_social FROM usager WHERE Id_Usager = :IdUsager');
+            $req->bindValue(':IdUsager', $Id_Usager, PDO::PARAM_INT);
+            $req->execute();
+    
+            $result = $req->fetch(PDO::FETCH_ASSOC);
+    
+            return $result;
+        } catch (Exception $pe) {
+            echo 'ERREUR : ' . $pe->getMessage();
+        }
+    }
+
+    public function CheckUsagerExistByNumeroSecuriteSocial($numero_securite_social){
+        try{
+            $req = $this->dbconfig->getPDO()->prepare('SELECT * FROM usager WHERE numero_securite_social = :numero_securite_social' );
+            $req->bindValue(':numero_securite_social', $numero_securite_social, PDO::PARAM_INT);
+            $req->execute();
+            $result = $req->fetch(PDO::FETCH_ASSOC);
+            if($result){
+                return true;
+            }else{
+                return false;
+            }
+
+        }catch(Exception $pe){echo 'ERREUR : ' . $pe->getMessage();}
+    }
+
     //+++++++++++++++++++++++++++++++++++++++++++++++++++SETTER+++++++++++++++++++++++++++++++++++++++++++++++
     public function setId($Id_Usager){
         $this->Id_Usager = $Id_Usager;

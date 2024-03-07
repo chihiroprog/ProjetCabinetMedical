@@ -19,20 +19,12 @@
 
 
     function checkInputToAddRdv($POST){
+        var_dump($POST);
         if(!isset($POST['idMedecin'])){
             exceptions_error_handler('id user null');
         }
-        if(!isset($POST['nomUsager'])){
-            exceptions_error_handler('nom null');
-        }
-        if(!isset($POST['prenomUsager'])){
-            exceptions_error_handler('prenom null');
-        }
-        if(!isset($POST['numSecuriteSociale'])){
-            exceptions_error_handler('numero_securite_social null');
-        }
         if(!isset($POST['idUsager'])){
-            exceptions_error_handler('Id_Medecin null');
+            exceptions_error_handler('Id_Usager null');
         }
         if(!isset($POST['dateRdv'])){
             exceptions_error_handler('date_rdv null');
@@ -54,9 +46,6 @@
         $commandModifyRdvToReturn->setDateRdv($POST['dateRdv']);
         $commandModifyRdvToReturn->setDureeRdv($POST['dureeRdv']);
         $commandModifyRdvToReturn->setmedecinChoseForRdv($POST['idMedecin']);
-        $commandModifyRdvToReturn->setNom($POST['nomUsager']);
-        $commandModifyRdvToReturn->setPrenom($POST['prenomUsager']);
-        $commandModifyRdvToReturn->setNumeroSecuriteSocial($POST['numSecuriteSociale']);
         $commandModifyRdvToReturn->setIdUsager($POST['idUsager']);
         $commandModifyRdvToReturn->setIdRdv($POST['idRdv']);
         $commandModifyRdvToReturn->setHeureRdv($POST['heureRdv']);

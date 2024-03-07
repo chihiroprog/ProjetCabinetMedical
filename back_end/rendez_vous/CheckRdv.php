@@ -9,14 +9,10 @@ $commandCheckButtonClicked = CheckButtonClicked($_POST);
 try {
     if ($commandCheckButtonClicked === "m") {
         $url = '../../front_end/rdv/ModifyRdv.php?' . http_build_query([
-            'nom' => $commandCheckRdv->getNom(),
             'id_rendez_vous' => $commandCheckRdv->getIdRdv(),
             'date_rendez_vous' => $commandCheckRdv->getDateRdv(),
             'duree_rendez_vous' => $commandCheckRdv->getDureeRdv(),
             'Id_Medecin' => $commandCheckRdv->getMedecinChoseForRdv(),
-            'nom_usager' => $commandCheckRdv->getNom(),
-            'prenom_usager' => $commandCheckRdv->getPrenom(),
-            'numero_secu_usager' => $commandCheckRdv->getNumeroSecuriteSocial(),
             'Id_Usager' => $commandCheckRdv->getIdUsager(),
             'heure_rendez_vous' => $commandCheckRdv->getHeureRdv(),
         ]);
@@ -36,15 +32,6 @@ function checkInputToCheckRdv($POST)
 {
     if (!isset($POST['Id_Usager'])) {
         exceptions_error_handler('id user null');
-    }
-    if (!isset($POST['nom'])) {
-        exceptions_error_handler('nom null');
-    }
-    if (!isset($POST['prenomUsager'])) {
-        exceptions_error_handler('prenom null');
-    }
-    if (!isset($POST['numero_securite_social'])) {
-        exceptions_error_handler('numero_securite_social null');
     }
     if (!isset($POST['Id_Medecin'])) {
         exceptions_error_handler('Id_Medecin null');
@@ -72,9 +59,6 @@ function setCommandCheckRdv($POST)
     $commandCheckRevToReturn->setDateRdv($POST['date_rendez_vous']);
     $commandCheckRevToReturn->setDureeRdv($POST['duree_rendez_vous']);
     $commandCheckRevToReturn->setmedecinChoseForRdv($POST['Id_Medecin']);
-    $commandCheckRevToReturn->setNom($POST['nom']);
-    $commandCheckRevToReturn->setPrenom($POST['prenomUsager']);
-    $commandCheckRevToReturn->setNumeroSecuriteSocial($POST['numero_securite_social']);
     $commandCheckRevToReturn->setIdUsager($POST['Id_Usager']);
     $commandCheckRevToReturn->setHeureRdv($POST['heure_rendez_vous']);
 

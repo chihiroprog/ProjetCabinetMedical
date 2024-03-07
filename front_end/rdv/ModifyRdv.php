@@ -17,33 +17,34 @@
         require_once("../../back_end/Objects/Medecin.php");
 
         
-        $nom = $_GET['nom'];
+        //$nom = $_GET['nom'];
         $id_rendez_vous = $_GET['id_rendez_vous'];
         $date_rendez_vous = $_GET['date_rendez_vous'];
         $duree_rendez_vous = $_GET['duree_rendez_vous'];
         $Id_Medecin = $_GET['Id_Medecin'];
-        $nom_usager = $_GET['nom_usager'];
-        $prenom_usager = $_GET['prenom_usager'];
-        $numero_secu_usager = $_GET['numero_secu_usager'];
+        //$nom_usager = $_GET['nom_usager'];
+        //$prenom_usager = $_GET['prenom_usager'];
+        //$numero_secu_usager = $_GET['numero_secu_usager'];
         $Id_Usager = $_GET['Id_Usager'];
         $heure_rendez_vous = $_GET['heure_rendez_vous'];
 
         
         $rendezVous = new Rendez_vous();
-        $rendezVous->setNom($nom);
+        //$rendezVous->setNom($nom);
         $rendezVous->setIdRdv($id_rendez_vous);
         $rendezVous->setDateRdv($date_rendez_vous);
         $rendezVous->setDureeRdv($duree_rendez_vous);
         $rendezVous->setMedecinChoseForRdv($Id_Medecin);
-        $rendezVous->setNom($nom_usager);
-        $rendezVous->setPrenom($prenom_usager);
-        $rendezVous->setNumeroSecuriteSocial($numero_secu_usager);
+        //$rendezVous->setNom($nom_usager);
+        //$rendezVous->setPrenom($prenom_usager);
+        //$rendezVous->setNumeroSecuriteSocial($numero_secu_usager);
         $rendezVous->setIdUsager($Id_Usager);
         $rendezVous->setHeureRdv($heure_rendez_vous);
 
         $medecin = new Medecin();
+        $usager = new Usager();
+        $getInfoUsager = $usager->getInformationByID($rendezVous->getIdUsager());
         $getInfoMedecin = $medecin->getNameAndFirstNameByID($rendezVous->getMedecinChoseForRdv());
-
         echo '<div class="container">';
             echo '<div class="allRdv">';
                 echo '<form action="../../back_end/rendez_vous/ModifyRdv.php" method="POST">';
@@ -62,20 +63,11 @@
                      
                 echo '<label for="HeureRdv">Heure du rendez-vous:</label>';
                 echo '<input type="time" id="heureRdv" name="heureRdv" value="' . $rendezVous->getHeureRdv() . '"><br>';
-                
-                echo '<label for="nomUsager">Nom du patient:</label>';
-                echo '<input type="text" readonly id="nomUsager" name="nomUsager" value="' . $rendezVous->getNom() . '"><br>';
 
-                echo '<label for="nomUsager">Prénom du patient:</label>';
-                echo '<input type="text" readonly id="prenomUsager" name="prenomUsager" value="' . $rendezVous->getPrenom() . '"><br>';
-
-                echo '<input type="hidden" id="numSecuriteSociale" name="numSecuriteSociale" value="' . $rendezVous->getNumeroSecuriteSocial() . '"><br>';
+                echo '<label for="HeureRdv">Nom et prénom du patient :</label>';
+                echo '<input type="text" readonly id="prenomUsager" name="prenomUsager" value="' . $getInfoUsager["nom"] . ' '.  $getInfoUsager['prenom'] .'"><br>';
                 
                 echo '<input type="hidden" id="idUsager" name="idUsager" value="' . $rendezVous->getIdUsager() . '"><br>';
-                echo '<input type="hidden" id="prenomUsager" name="prenomUsager" value="' . $rendezVous->getPrenom() . '"><br>';
-
-
-            
 
                 echo '<input type="submit" value="Modifier">';
                 echo '</form>';
